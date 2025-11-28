@@ -128,7 +128,31 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Test frequently on target hardware
 - Keep commits atomic and descriptive
 
-## Unity Editor Tasks
+## Code Tasks (AI - Completed or In Progress)
+
+### Completed
+- Set up Unity project: Open in Unity 2022.3 LTS, install URP, AI Navigation, TextMeshPro, configure for PC build
+- Create main scenes: Implement MainMenu.unity based on MainMenu.txt description, GameWorld.unity with terrain, lighting, skybox, White House/Capitol prefabs
+- Implement core mechanics: Extend PlayerController with vehicle mounting/dismounting, vehicle physics with WheelCollider, shooting with raycasting/bullet projectiles, health/damage for player/NPCs
+- Expand dialogue system: Create Dialogue assets using ScriptableObjects, branching dialogue trees with multiple choice outcomes, voice acting placeholders, connect to quest progression
+- Quest system enhancement: Create Quest ScriptableObjects for main storyline and side missions, implement quest objectives (kill, collect, deliver, dialogue), add quest UI with progress tracking, connect to world events and NPC interactions
+- World generation: Implement procedural building placement on terrain, add roads, sidewalks, navigation meshes, create dynamic weather system (rain, fog, day/night cycle), add random events (protests, traffic accidents, news broadcasts)
+- NPC AI: Implement different NPC behaviors (patrol, follow, flee), add NPC schedules (work, sleep, social activities), create faction system (supporters, opponents, neutrals), implement crowd simulation for large gatherings
+- UI/UX implementation: Create HUD with mini-map, health bars, stat displays, implement pause menu with save/load functionality, add inventory system for weapons, documents, items, create settings menu for graphics, audio, controls
+- Leisure Suit Larry integration: Implement inventory system for collecting items and solving puzzles, add puzzle mini-games with text-based or simple interactive challenges, enhance dialogue with humorous, adult-themed choices and consequences, create adult humor side quests (scandals, parties, negotiations), add point-and-click interaction for examining objects and NPCs, implement save/load for puzzle states and inventory
+- Build and deployment: Implement save/load system with JSON serialization, add achievements and unlockables, prepare for alpha/beta testing phases
+- Audio integration: Add background music tracks (patriotic, tense, ambient), implement sound effects for actions (gunshots, car engines, footsteps), add voice lines for characters and radio broadcasts, create dynamic audio mixing based on game state
+- Visual polish: Create custom shaders for corruption effects and special abilities, add particle effects for explosions, muzzle flashes, and weather, implement post-processing effects (bloom, depth of field, color grading), add LOD (Level of Detail) for performance optimization
+- Multiplayer considerations: Set up Mirror networking for co-op features, implement lobby system and matchmaking, add online leaderboards for achievements, ensure single-player functionality remains intact
+- Testing and balancing: Implement unit tests for core systems, balance stats, rewards, and difficulty curves, add cheat codes for development testing, perform playtesting and iterate based on feedback
+
+### In Progress
+- Add more gameplay features: Crafting system, phone calls, advanced AI
+- Enhance adult content: More romance mechanics, scandal events
+- Add mini-games: Card games, debates
+- Balance and polish code
+
+## Unity Editor Tasks (User)
 
 ### Project Setup
 - Open the project in Unity 2022.3 LTS or later
@@ -147,16 +171,20 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Create Quest Panel Canvas: Add text for active quests
 - Create Inventory Panel Canvas: Add text/icons for items
 - Create Settings Panel Canvas: Add sliders for volume, graphics
+- Create Achievement Popup: UI for unlocking achievements
 
 ### Assets and Materials
 - Create roadMaterial and sidewalkMaterial (simple colors or textures)
-- Create particle systems for rain (RainParticles), fog (FogParticles)
+- Create particle systems for rain (RainParticles), fog (FogParticles), muzzle flash
 - Add audio clips for music, SFX; create AudioSources and assign
-- Create ScriptableObjects: Right-click > Create > Dialogue/Quest, fill with data
+- Create ScriptableObjects: Right-click > Create > Dialogue/Quest/Achievement, fill with data
+- Add 3D models: Player, NPCs, vehicles, buildings
+- Create animations: Walk, shoot, drive
 
 ### Build and Testing
 - Set up build pipeline: Configure scenes in build settings, test builds
-- Add achievements: Use Unity's Achievement system or custom
 - Test gameplay: Run in editor, check mechanics, balance stats
+- Add LOD groups to models for performance
+- Configure post-processing for visual effects
 
 This TODO list provides a roadmap for building "American President". Start with high-priority tasks and work systematically through the list. Refer to the Game Design Document for detailed specifications.
