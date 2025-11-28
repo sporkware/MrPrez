@@ -118,8 +118,63 @@ public class WorldGenerator : MonoBehaviour
 
     void SpawnRandomEvent()
     {
-        // Random events like protests, accidents, etc.
-        Debug.Log("Random event spawned!");
-        // Implementation for specific events
+        int eventType = Random.Range(0, 3);
+        switch (eventType)
+        {
+            case 0:
+                SpawnProtest();
+                break;
+            case 1:
+                SpawnAccident();
+                break;
+            case 2:
+                BroadcastNews();
+                break;
+        }
+    }
+
+    void SpawnProtest()
+    {
+        Debug.Log("Protest spawned! Approval decreased.");
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.ModifyApproval(-10f);
+        }
+        // Spawn protester NPCs
+        for (int i = 0; i < 5; i++)
+        {
+            Vector3 pos = new Vector3(Random.Range(-worldSize/2, worldSize/2), 0, Random.Range(-worldSize/2, worldSize/2));
+            if (npcPrefabs.Length > 0)
+            {
+                Instantiate(npcPrefabs[Random.Range(0, npcPrefabs.Length)], pos, Quaternion.identity);
+            }
+        }
+    }
+
+    void SpawnAccident()
+    {
+        Debug.Log("Car accident! Traffic chaos.");
+        // Spawn wrecked car, affect traffic
+        if (vehiclePrefabs.Length > 0)
+        {
+            Vector3 pos = new Vector3(Random.Range(-worldSize/2, worldSize/2), 0, Random.Range(-worldSize/2, worldSize/2));
+            Instantiate(vehiclePrefabs[Random.Range(0, vehiclePrefabs.Length)], pos, Quaternion.identity);
+        }
+    }
+
+    void BroadcastNews()
+    {
+        Debug.Log("News broadcast: Scandal revealed! Corruption increased.");
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.ModifyCorruption(5f);
+        }
+        // Play news audio if available
+        if (AudioManager.Instance != null)
+        {
+            // Assume a news clip
+        }
     }
 }
