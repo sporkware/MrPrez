@@ -29,6 +29,8 @@ public class SaveLoadManager : MonoBehaviour
         data.playerData = CreatePlayerData();
         data.questData = CreateQuestData();
         data.inventoryData = CreateInventoryData();
+        data.settingsData = CreateSettingsData();
+        data.achievementData = CreateAchievementData();
 
         string json = JsonUtility.ToJson(data);
         File.WriteAllText(savePath, json);
@@ -44,6 +46,8 @@ public class SaveLoadManager : MonoBehaviour
             LoadPlayerData(data.playerData);
             LoadQuestData(data.questData);
             LoadInventoryData(data.inventoryData);
+            LoadSettingsData(data.settingsData);
+            LoadAchievementData(data.achievementData);
             Debug.Log("Game loaded");
         }
         else
@@ -127,6 +131,50 @@ public class SaveLoadManager : MonoBehaviour
         // Assuming items are predefined, load by name
         // For simplicity, placeholder
     }
+
+    private SettingsData CreateSettingsData()
+    {
+        SettingsManager sm = SettingsManager.Instance;
+        return new SettingsData
+        {
+            masterVolume = sm.masterVolume,
+            musicVolume = sm.musicVolume,
+            sfxVolume = sm.sfxVolume,
+            mouseSensitivity = sm.mouseSensitivity,
+            graphicsQuality = sm.graphicsQuality
+        };
+    }
+
+    private void LoadSettingsData(SettingsData data)
+    {
+        SettingsManager sm = SettingsManager.Instance;
+        sm.masterVolume = data.masterVolume;
+        sm.musicVolume = data.musicVolume;
+        sm.sfxVolume = data.sfxVolume;
+        sm.mouseSensitivity = data.mouseSensitivity;
+        sm.graphicsQuality = data.graphicsQuality;
+        sm.ApplySettings();
+    }
+
+    private AchievementData CreateAchievementData()
+    {
+        AchievementManager am = AchievementManager.Instance;
+        bool[] unlocked = new bool[am.achievements.Count];
+        for (int i = 0; i < am.achievements.Count; i++)
+        {
+            unlocked[i] = am.achievements[i].unlocked;
+        }
+        return new AchievementData { unlockedAchievements = unlocked };
+    }
+
+    private void LoadAchievementData(AchievementData data)
+    {
+        AchievementManager am = AchievementManager.Instance;
+        for (int i = 0; i < Mathf.Min(data.unlockedAchievements.Length, am.achievements.Count); i++)
+        {
+            am.achievements[i].unlocked = data.unlockedAchievements[i];
+        }
+    }
 }
 
 [System.Serializable]
@@ -135,6 +183,8 @@ public class GameData
     public PlayerData playerData;
     public QuestData[] questData;
     public InventoryData inventoryData;
+    public SettingsData settingsData;
+    public AchievementData achievementData;
 }
 
 [System.Serializable]
@@ -161,4 +211,20 @@ public class QuestData
 public class InventoryData
 {
     public string[] itemNames;
+}
+
+[System.Serializable]
+public class SettingsData
+{
+    public float masterVolume;
+    public float musicVolume;
+    public float sfxVolume;
+    public float mouseSensitivity;
+    public int graphicsQuality;
+}
+
+[System.Serializable]
+public class AchievementData
+{
+    public bool[] unlockedAchievements;
 }

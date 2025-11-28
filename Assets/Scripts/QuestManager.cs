@@ -7,6 +7,7 @@ public class QuestManager : MonoBehaviour
     public List<Quest> mainQuests;
     public List<Quest> sideQuests;
     public Quest currentQuest;
+    private static bool firstQuest = false;
 
     void Start()
     {
@@ -42,6 +43,13 @@ public class QuestManager : MonoBehaviour
             player.ModifyWealth(quest.wealthReward);
         }
         Debug.Log("Completed quest: " + quest.title);
+
+        // Achievement
+        if (!firstQuest && AchievementManager.Instance != null)
+        {
+            firstQuest = true;
+            AchievementManager.Instance.UnlockAchievement("First Quest Completed");
+        }
     }
 
     public void CheckQuestCompletion(Quest quest)

@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public float fireRate = 0.5f;
     public GameObject bulletPrefab;
     public Transform firePoint;
+    public ParticleSystem muzzleFlash;
 
     // Driving variables
     public bool isDriving = false;
@@ -29,6 +30,8 @@ public class PlayerController : MonoBehaviour
     private Rigidbody rb;
     private float nextFireTime = 0f;
     private bool isGrounded = true;
+    private int shotsFired = 0;
+    private bool corruptAchieved = false;
 
     void Start()
     {
@@ -42,6 +45,7 @@ public class PlayerController : MonoBehaviour
         HandleCombat();
         HandleDriving();
         HandleCheats();
+        CheckAchievements();
     }
 
     void HandleMovement()
@@ -82,6 +86,21 @@ public class PlayerController : MonoBehaviour
         if (bulletPrefab && firePoint)
         {
             Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
+        if (muzzleFlash)
+        {
+            muzzleFlash.Play();
+        }
+        // Play gunshot sound
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlayGunshot();
+        }
+        // Achievement
+        shotsFired++;
+        if (shotsFired == 1 && AchievementManager.Instance != null)
+        {
+            AchievementManager.Instance.UnlockAchievement("First Shot");
         }
     }
 
@@ -183,6 +202,15 @@ public class PlayerController : MonoBehaviour
             influence = 100f;
             wealth = 10000f;
             corruptionLevel = 0f;
+        }
+    }
+
+    private void CheckAchievements()
+    {
+        if (corruptionLevel >= 50f && !corruptAchieved && AchievementManager.Instance != null)
+        {
+            corruptAchieved = true;
+            AchievementManager.Instance.UnlockAchievement("Corrupt Politician");
         }
     }
 }

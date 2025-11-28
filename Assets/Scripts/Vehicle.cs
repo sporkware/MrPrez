@@ -16,6 +16,7 @@ public class Vehicle : MonoBehaviour
     private float currentSpeed;
     private float steerAngle;
     public bool isOccupied = false;
+    private static bool firstDrive = false;
 
     void Start()
     {
@@ -94,6 +95,12 @@ public class Vehicle : MonoBehaviour
         player.isDriving = true;
         player.gameObject.SetActive(false); // Hide player model
         isOccupied = true;
+        // Achievement
+        if (!firstDrive && AchievementManager.Instance != null)
+        {
+            firstDrive = true;
+            AchievementManager.Instance.UnlockAchievement("First Drive");
+        }
     }
 
     public void ExitVehicle(PlayerController player)

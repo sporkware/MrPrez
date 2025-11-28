@@ -11,6 +11,7 @@ public class DialogueSystem : MonoBehaviour
     private Queue<string> sentences;
     private Dialogue currentDialogue;
     private int currentSentenceIndex = 0;
+    private static bool firstDialogue = false;
 
     void Start()
     {
@@ -30,6 +31,13 @@ public class DialogueSystem : MonoBehaviour
         }
 
         DisplayNextSentence();
+
+        // Achievement
+        if (!firstDialogue && AchievementManager.Instance != null)
+        {
+            firstDialogue = true;
+            AchievementManager.Instance.UnlockAchievement("First Conversation");
+        }
     }
 
     public void DisplayNextSentence()
