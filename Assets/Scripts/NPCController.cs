@@ -67,7 +67,7 @@ public class NPCController : MonoBehaviour
             }
         }
 
-        // Update behavior based on player proximity
+        // Update behavior based on player proximity and stats
         float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
         if (distanceToPlayer < 10f && faction == Faction.Opponents)
         {
@@ -76,6 +76,12 @@ public class NPCController : MonoBehaviour
         else if (distanceToPlayer > 20f)
         {
             // Resume default behavior
+        }
+
+        // React to player corruption
+        if (player.corruptionLevel > 50f && faction == Faction.Supporters)
+        {
+            faction = Faction.Neutrals; // Turn neutral
         }
     }
 

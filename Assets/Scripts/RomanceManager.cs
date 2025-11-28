@@ -48,6 +48,20 @@ public class RomanceManager : MonoBehaviour
         {
             player.ModifyCorruption(10f);
         }
+        // Schedule scandal event
+        Invoke("TriggerScandal", Random.Range(60f, 300f)); // 1-5 minutes
+    }
+
+    private void TriggerScandal()
+    {
+        Debug.Log("Scandal broke out!");
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.ModifyApproval(-20f);
+            player.ModifyCorruption(5f);
+        }
+        // End affairs or something
     }
 }
 
