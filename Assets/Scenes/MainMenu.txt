@@ -1,0 +1,26 @@
+# Main Menu Scene Description
+# This is a placeholder for the MainMenu.unity scene file
+# In Unity, this scene should contain:
+# - Canvas with UI elements for menu
+# - Background image of Washington D.C.
+# - Buttons: New Game, Load Game, Settings, Quit
+# - Audio source for background music
+# - Event system for UI interactions
+
+# Scene Hierarchy:
+# - Main Camera
+# - Directional Light
+# - Canvas
+#   - Background Image
+#   - Title Text: "American President"
+#   - New Game Button
+#   - Load Game Button
+#   - Settings Button
+#   - Quit Button
+# - EventSystem
+
+# Scripts to attach:
+# - Attach MenuController script to Canvas (to be created)
+
+# Lighting: Default directional light
+# Skybox: Custom patriotic skybox
