@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public float influence = 50f;
     public float wealth = 1000f;
     public float corruptionLevel = 0f;
+    public float charm = 50f; // For adult interactions
 
     private Rigidbody rb;
     private float nextFireTime = 0f;
@@ -166,6 +167,11 @@ public class PlayerController : MonoBehaviour
     public void ModifyCorruption(float amount)
     {
         corruptionLevel = Mathf.Clamp(corruptionLevel + amount, 0f, 100f);
+    }
+
+    public void ModifyCharm(float amount)
+    {
+        charm = Mathf.Clamp(charm + amount, 0f, 100f);
     }
 
     public void TakeDamage(float damage)

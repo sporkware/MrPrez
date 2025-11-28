@@ -6,6 +6,7 @@ public class NPCController : MonoBehaviour
     public enum NPCType { Citizen, Politician, Advisor, Antagonist }
     public enum Faction { Supporters, Opponents, Neutrals }
     public enum Behavior { Idle, Patrol, Follow, Flee, Socialize }
+    public float relationshipLevel = 0f; // For romance/affairs
 
     public NPCType npcType;
     public Faction faction;
@@ -117,7 +118,8 @@ public class NPCController : MonoBehaviour
                     new DialogueChoice { choiceText = "I'm doing great, thank you!", approvalChange = 2f },
                     new DialogueChoice { choiceText = "Mind your own business.", approvalChange = -5f, corruptionChange = 1f },
                     new DialogueChoice { choiceText = "Want to grab a drink later? (Flirt)", approvalChange = 1f, influenceChange = 1f, corruptionChange = 0.5f },
-                    new DialogueChoice { choiceText = "Care to join me in the Oval Office? (Seduce)", approvalChange = -1f, influenceChange = 2f, corruptionChange = 2f }
+                    new DialogueChoice { choiceText = "Care to join me in the Oval Office? (Seduce)", approvalChange = -1f, influenceChange = 2f, corruptionChange = 2f },
+                    new DialogueChoice { choiceText = "You look stunning tonight. Fancy a private tour? (Bold Flirt)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 3f, nextDialogue = null } // Can lead to affair
                 };
                 break;
             case NPCType.Politician:
@@ -127,7 +129,8 @@ public class NPCController : MonoBehaviour
                     new DialogueChoice { choiceText = "I support progressive reforms.", approvalChange = 3f, influenceChange = 2f },
                     new DialogueChoice { choiceText = "Let's cut taxes for the wealthy.", approvalChange = -2f, influenceChange = 3f, corruptionChange = 2f },
                     new DialogueChoice { choiceText = "Tell me a joke to lighten the mood.", approvalChange = 1f },
-                    new DialogueChoice { choiceText = "How about we discuss this over dinner... and more? (Bribe)", approvalChange = -3f, influenceChange = 4f, corruptionChange = 3f }
+                    new DialogueChoice { choiceText = "How about we discuss this over dinner... and more? (Bribe)", approvalChange = -3f, influenceChange = 4f, corruptionChange = 3f },
+                    new DialogueChoice { choiceText = "I have some compromising photos. Support my bill or else. (Blackmail)", approvalChange = -5f, influenceChange = 5f, corruptionChange = 4f }
                 };
                 break;
             case NPCType.Advisor:
@@ -137,7 +140,8 @@ public class NPCController : MonoBehaviour
                     new DialogueChoice { choiceText = "Cover it up discreetly.", approvalChange = -1f, corruptionChange = 3f },
                     new DialogueChoice { choiceText = "Come clean to the public.", approvalChange = 4f, influenceChange = -1f },
                     new DialogueChoice { choiceText = "Blame it on the media.", approvalChange = -3f, corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Let's make this scandal... disappear. (Blackmail)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 4f }
+                    new DialogueChoice { choiceText = "Let's make this scandal... disappear. (Blackmail)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 4f },
+                    new DialogueChoice { choiceText = "I need your help with a personal matter. Keep this quiet. (Affair)", approvalChange = -4f, influenceChange = 4f, corruptionChange = 5f }
                 };
                 break;
             case NPCType.Antagonist:
@@ -147,7 +151,8 @@ public class NPCController : MonoBehaviour
                     new DialogueChoice { choiceText = "Bring it on!", approvalChange = 1f, influenceChange = 1f },
                     new DialogueChoice { choiceText = "Let's negotiate.", influenceChange = 2f },
                     new DialogueChoice { choiceText = "Make my day. (Threaten)", corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Perhaps we can... arrange something mutually beneficial. (Seduce)", approvalChange = -1f, influenceChange = 3f, corruptionChange = 2f }
+                    new DialogueChoice { choiceText = "Perhaps we can... arrange something mutually beneficial. (Seduce)", approvalChange = -1f, influenceChange = 3f, corruptionChange = 2f },
+                    new DialogueChoice { choiceText = "I've got dirt on you too. Let's call a truce... intimately. (Truce with Benefits)", approvalChange = 2f, influenceChange = 4f, corruptionChange = 3f }
                 };
                 break;
         }
