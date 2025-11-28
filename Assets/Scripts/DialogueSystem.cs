@@ -41,7 +41,7 @@ public class DialogueSystem : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
-        dialogueText.text = sentence;
+        dialogueText.text = currentDialogue.speakerName + ": " + sentence;
         currentSentenceIndex++;
     }
 
@@ -72,14 +72,23 @@ public class DialogueSystem : MonoBehaviour
                 player.ModifyInfluence(choice.influenceChange);
                 player.ModifyCorruption(choice.corruptionChange);
             }
+            // If next dialogue, start it
+            if (choice.nextDialogue != null)
+            {
+                StartDialogue(choice.nextDialogue);
+            }
+            else
+            {
+                EndDialogue();
+            }
         }
-        EndDialogue();
     }
 }
 
-[System.Serializable]
-public class Dialogue
+[CreateAssetMenu(fileName = "New Dialogue", menuName = "Dialogue")]
+public class Dialogue : ScriptableObject
 {
+    public string speakerName;
     public string[] sentences;
     public DialogueChoice[] choices;
 }
@@ -91,4 +100,5 @@ public class DialogueChoice
     public float approvalChange;
     public float influenceChange;
     public float corruptionChange;
+    public Dialogue nextDialogue;
 }

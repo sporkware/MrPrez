@@ -1,4 +1,5 @@
 using UnityEngine;
+using Unity.AI.Navigation;
 
 public class WorldGenerator : MonoBehaviour
 {
@@ -6,11 +7,15 @@ public class WorldGenerator : MonoBehaviour
     public GameObject[] vehiclePrefabs;
     public GameObject[] npcPrefabs;
     public Terrain terrain;
+    public Material roadMaterial;
+    public Material sidewalkMaterial;
 
     public int worldSize = 1000;
     public int buildingDensity = 50;
     public int vehicleDensity = 20;
     public int npcDensity = 100;
+    public float roadWidth = 10f;
+    public float sidewalkWidth = 2f;
 
     void Start()
     {
@@ -27,6 +32,9 @@ public class WorldGenerator : MonoBehaviour
             TerrainData terrainData = terrain.terrainData;
             terrainData.size = new Vector3(worldSize, 100, worldSize);
         }
+
+        // Generate roads and sidewalks
+        GenerateRoads();
 
         // Generate buildings
         for (int i = 0; i < buildingDensity; i++)
@@ -64,8 +72,48 @@ public class WorldGenerator : MonoBehaviour
             Instantiate(npcPrefabs[Random.Range(0, npcPrefabs.Length)], position, Quaternion.identity);
         }
 
+        // Bake NavMesh
+        NavMeshSurface navMeshSurface = gameObject.AddComponent<NavMeshSurface>();
+        navMeshSurface.BuildNavMesh();
+
         // Add dynamic events (placeholder)
         InvokeRepeating("SpawnRandomEvent", 60f, 300f); // Every 5 minutes
+    }
+
+    void GenerateRoads()
+    {
+        int gridSize = 20; // Number of roads in each direction
+        float spacing = worldSize / gridSize;
+
+        for (int i = 0; i <= gridSize; i++)
+        {
+            // Horizontal roads
+            CreateRoadSegment(new Vector3(-worldSize/2, 0.1f, -worldSize/2 + i * spacing), new Vector3(worldSize/2, 0.1f, -worldSize/2 + i * spacing), roadWidth, roadMaterial);
+            // Sidewalks
+            CreateRoadSegment(new Vector3(-worldSize/2, 0.1f, -worldSize/2 + i * spacing - roadWidth/2 - sidewalkWidth/2), new Vector3(worldSize/2, 0.1f, -worldSize/2 + i * spacing - roadWidth/2 - sidewalkWidth/2), sidewalkWidth, sidewalkMaterial);
+            CreateRoadSegment(new Vector3(-worldSize/2, 0.1f, -worldSize/2 + i * spacing + roadWidth/2 + sidewalkWidth/2), new Vector3(worldSize/2, 0.1f, -worldSize/2 + i * spacing + roadWidth/2 + sidewalkWidth/2), sidewalkWidth, sidewalkMaterial);
+
+            // Vertical roads
+            CreateRoadSegment(new Vector3(-worldSize/2 + i * spacing, 0.1f, -worldSize/2), new Vector3(-worldSize/2 + i * spacing, 0.1f, worldSize/2), roadWidth, roadMaterial);
+            // Sidewalks
+            CreateRoadSegment(new Vector3(-worldSize/2 + i * spacing - roadWidth/2 - sidewalkWidth/2, 0.1f, -worldSize/2), new Vector3(-worldSize/2 + i * spacing - roadWidth/2 - sidewalkWidth/2, 0.1f, worldSize/2), sidewalkWidth, sidewalkMaterial);
+            CreateRoadSegment(new Vector3(-worldSize/2 + i * spacing + roadWidth/2 + sidewalkWidth/2, 0.1f, -worldSize/2), new Vector3(-worldSize/2 + i * spacing + roadWidth/2 + sidewalkWidth/2, 0.1f, worldSize/2), sidewalkWidth, sidewalkMaterial);
+        }
+    }
+
+    void CreateRoadSegment(Vector3 start, Vector3 end, float width, Material material)
+    {
+        GameObject roadSegment = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        Vector3 direction = end - start;
+        float length = direction.magnitude;
+        roadSegment.transform.position = start + direction / 2;
+        roadSegment.transform.rotation = Quaternion.LookRotation(direction);
+        roadSegment.transform.localScale = new Vector3(width, 0.1f, length);
+        if (material != null)
+        {
+            roadSegment.GetComponent<Renderer>().material = material;
+        }
+        roadSegment.tag = "Road";
     }
 
     void SpawnRandomEvent()

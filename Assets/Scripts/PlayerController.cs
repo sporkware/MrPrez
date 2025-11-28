@@ -16,6 +16,10 @@ public class PlayerController : MonoBehaviour
     public bool isDriving = false;
     public Vehicle currentVehicle;
 
+    // Health system
+    public float maxHealth = 100f;
+    private float currentHealth;
+
     // Stats from GDD
     public float approvalRating = 50f;
     public float influence = 50f;
@@ -29,6 +33,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentHealth = maxHealth;
     }
 
     void Update()
@@ -36,6 +41,7 @@ public class PlayerController : MonoBehaviour
         HandleMovement();
         HandleCombat();
         HandleDriving();
+        HandleCheats();
     }
 
     void HandleMovement()
@@ -81,16 +87,37 @@ public class PlayerController : MonoBehaviour
 
     void HandleDriving()
     {
-        // Placeholder for vehicle entry/exit
-        if (Input.GetKeyDown(KeyCode.E) && !isDriving)
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            // Enter vehicle logic (to be implemented)
+            if (!isDriving)
+            {
+                Vehicle nearby = FindNearbyVehicle();
+                if (nearby != null)
+                {
+                    nearby.EnterVehicle(this);
+                    currentVehicle = nearby;
+                }
+            }
+            else
+            {
+                if (currentVehicle != null)
+                {
+                    currentVehicle.ExitVehicle(this);
+                    currentVehicle = null;
+                }
+            }
         }
-        else if (Input.GetKeyDown(KeyCode.E) && isDriving)
+    }
+
+    private Vehicle FindNearbyVehicle()
+    {
+        Collider[] colliders = Physics.OverlapSphere(transform.position, 5f);
+        foreach (Collider col in colliders)
         {
-            // Exit vehicle logic
-            isDriving = false;
+            Vehicle v = col.GetComponent<Vehicle>();
+            if (v != null && !v.isOccupied) return v;
         }
+        return null;
     }
 
     void OnCollisionEnter(Collision collision)
@@ -120,5 +147,42 @@ public class PlayerController : MonoBehaviour
     public void ModifyCorruption(float amount)
     {
         corruptionLevel = Mathf.Clamp(corruptionLevel + amount, 0f, 100f);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        currentHealth -= damage;
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Handle death (respawn, game over, etc.)
+        Debug.Log("Player died");
+        // For now, disable
+        gameObject.SetActive(false);
+    }
+
+    public float GetHealthPercentage()
+    {
+        return currentHealth / maxHealth;
+    }
+
+    private void HandleCheats()
+    {
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            // Toggle cheat mode
+            Debug.Log("Cheat mode toggled");
+            // For example, god mode
+            currentHealth = maxHealth;
+            approvalRating = 100f;
+            influence = 100f;
+            wealth = 10000f;
+            corruptionLevel = 0f;
+        }
     }
 }

@@ -15,6 +15,7 @@ public class Vehicle : MonoBehaviour
     private Rigidbody rb;
     private float currentSpeed;
     private float steerAngle;
+    public bool isOccupied = false;
 
     void Start()
     {
@@ -23,7 +24,10 @@ public class Vehicle : MonoBehaviour
 
     void FixedUpdate()
     {
-        HandleMovement();
+        if (isOccupied)
+        {
+            HandleMovement();
+        }
         UpdateWheels();
     }
 
@@ -89,6 +93,7 @@ public class Vehicle : MonoBehaviour
         player.transform.localPosition = Vector3.zero;
         player.isDriving = true;
         player.gameObject.SetActive(false); // Hide player model
+        isOccupied = true;
     }
 
     public void ExitVehicle(PlayerController player)
@@ -97,5 +102,6 @@ public class Vehicle : MonoBehaviour
         player.transform.position = transform.position + transform.right * 2f; // Exit to side
         player.isDriving = false;
         player.gameObject.SetActive(true);
+        isOccupied = false;
     }
 }

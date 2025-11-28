@@ -4,10 +4,16 @@ using UnityEngine.AI;
 public class NPCController : MonoBehaviour
 {
     public enum NPCType { Citizen, Politician, Advisor, Antagonist }
+    public enum Faction { Supporters, Opponents, Neutrals }
+    public enum Behavior { Idle, Patrol, Follow, Flee, Socialize }
 
     public NPCType npcType;
+    public Faction faction;
+    public Behavior currentBehavior;
     public float moveSpeed = 3f;
     public float interactionDistance = 2f;
+    public float health = 100f;
+    public float maxHealth = 100f;
 
     private NavMeshAgent agent;
     private Animator animator;
@@ -27,16 +33,24 @@ public class NPCController : MonoBehaviour
         switch (npcType)
         {
             case NPCType.Citizen:
-                StartCoroutine(RandomWalk());
+                faction = (Faction)Random.Range(0, 3);
+                currentBehavior = Behavior.Patrol;
+                StartCoroutine(PatrolBehavior());
                 break;
             case NPCType.Politician:
-                // Politicians might have schedules
+                faction = Faction.Neutrals;
+                currentBehavior = Behavior.Socialize;
+                StartCoroutine(ScheduleBehavior());
                 break;
             case NPCType.Advisor:
-                // Advisors follow player or wait at White House
+                faction = Faction.Supporters;
+                currentBehavior = Behavior.Follow;
+                StartCoroutine(FollowPlayer());
                 break;
             case NPCType.Antagonist:
-                // Antagonists plot against player
+                faction = Faction.Opponents;
+                currentBehavior = Behavior.Flee;
+                StartCoroutine(FleeFromPlayer());
                 break;
         }
     }
@@ -51,6 +65,33 @@ public class NPCController : MonoBehaviour
                 Interact();
             }
         }
+
+        // Update behavior based on player proximity
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+        if (distanceToPlayer < 10f && faction == Faction.Opponents)
+        {
+            currentBehavior = Behavior.Flee;
+        }
+        else if (distanceToPlayer > 20f)
+        {
+            // Resume default behavior
+        }
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        // Handle NPC death
+        Debug.Log(npcType + " died");
+        Destroy(gameObject);
     }
 
     void Interact()
@@ -75,7 +116,8 @@ public class NPCController : MonoBehaviour
                 {
                     new DialogueChoice { choiceText = "I'm doing great, thank you!", approvalChange = 2f },
                     new DialogueChoice { choiceText = "Mind your own business.", approvalChange = -5f, corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Want to grab a drink later? (Flirt)", approvalChange = 1f, influenceChange = 1f, corruptionChange = 0.5f }
+                    new DialogueChoice { choiceText = "Want to grab a drink later? (Flirt)", approvalChange = 1f, influenceChange = 1f, corruptionChange = 0.5f },
+                    new DialogueChoice { choiceText = "Care to join me in the Oval Office? (Seduce)", approvalChange = -1f, influenceChange = 2f, corruptionChange = 2f }
                 };
                 break;
             case NPCType.Politician:
@@ -84,7 +126,8 @@ public class NPCController : MonoBehaviour
                 {
                     new DialogueChoice { choiceText = "I support progressive reforms.", approvalChange = 3f, influenceChange = 2f },
                     new DialogueChoice { choiceText = "Let's cut taxes for the wealthy.", approvalChange = -2f, influenceChange = 3f, corruptionChange = 2f },
-                    new DialogueChoice { choiceText = "Tell me a joke to lighten the mood.", approvalChange = 1f }
+                    new DialogueChoice { choiceText = "Tell me a joke to lighten the mood.", approvalChange = 1f },
+                    new DialogueChoice { choiceText = "How about we discuss this over dinner... and more? (Bribe)", approvalChange = -3f, influenceChange = 4f, corruptionChange = 3f }
                 };
                 break;
             case NPCType.Advisor:
@@ -93,7 +136,8 @@ public class NPCController : MonoBehaviour
                 {
                     new DialogueChoice { choiceText = "Cover it up discreetly.", approvalChange = -1f, corruptionChange = 3f },
                     new DialogueChoice { choiceText = "Come clean to the public.", approvalChange = 4f, influenceChange = -1f },
-                    new DialogueChoice { choiceText = "Blame it on the media.", approvalChange = -3f, corruptionChange = 1f }
+                    new DialogueChoice { choiceText = "Blame it on the media.", approvalChange = -3f, corruptionChange = 1f },
+                    new DialogueChoice { choiceText = "Let's make this scandal... disappear. (Blackmail)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 4f }
                 };
                 break;
             case NPCType.Antagonist:
@@ -102,7 +146,8 @@ public class NPCController : MonoBehaviour
                 {
                     new DialogueChoice { choiceText = "Bring it on!", approvalChange = 1f, influenceChange = 1f },
                     new DialogueChoice { choiceText = "Let's negotiate.", influenceChange = 2f },
-                    new DialogueChoice { choiceText = "Make my day. (Threaten)", corruptionChange = 1f }
+                    new DialogueChoice { choiceText = "Make my day. (Threaten)", corruptionChange = 1f },
+                    new DialogueChoice { choiceText = "Perhaps we can... arrange something mutually beneficial. (Seduce)", approvalChange = -1f, influenceChange = 3f, corruptionChange = 2f }
                 };
                 break;
         }
@@ -110,17 +155,75 @@ public class NPCController : MonoBehaviour
         return dialogue;
     }
 
-    System.Collections.IEnumerator RandomWalk()
+    System.Collections.IEnumerator PatrolBehavior()
     {
-        while (true)
+        while (currentBehavior == Behavior.Patrol)
         {
-            Vector3 randomPoint = transform.position + Random.insideUnitSphere * 10f;
+            Vector3 randomPoint = transform.position + Random.insideUnitSphere * 20f;
             NavMeshHit hit;
-            if (NavMesh.SamplePosition(randomPoint, out hit, 10f, NavMesh.AllAreas))
+            if (NavMesh.SamplePosition(randomPoint, out hit, 20f, NavMesh.AllAreas))
             {
                 agent.SetDestination(hit.position);
             }
-            yield return new WaitForSeconds(Random.Range(5f, 15f));
+            yield return new WaitForSeconds(Random.Range(10f, 30f));
+        }
+    }
+
+    System.Collections.IEnumerator FollowPlayer()
+    {
+        while (currentBehavior == Behavior.Follow)
+        {
+            if (Vector3.Distance(transform.position, player.transform.position) > 5f)
+            {
+                agent.SetDestination(player.transform.position);
+            }
+            else
+            {
+                agent.ResetPath();
+            }
+            yield return new WaitForSeconds(1f);
+        }
+    }
+
+    System.Collections.IEnumerator FleeFromPlayer()
+    {
+        while (currentBehavior == Behavior.Flee)
+        {
+            Vector3 fleeDirection = transform.position - player.transform.position;
+            Vector3 fleePoint = transform.position + fleeDirection.normalized * 20f;
+            NavMeshHit hit;
+            if (NavMesh.SamplePosition(fleePoint, out hit, 20f, NavMesh.AllAreas))
+            {
+                agent.SetDestination(hit.position);
+            }
+            yield return new WaitForSeconds(2f);
+        }
+    }
+
+    System.Collections.IEnumerator ScheduleBehavior()
+    {
+        // Simple schedule: work during day, socialize at night
+        while (true)
+        {
+            float timeOfDay = (Time.time / 1440f) % 1f; // Assuming 24 min day
+            if (timeOfDay > 0.25f && timeOfDay < 0.75f) // Daytime
+            {
+                currentBehavior = Behavior.Patrol;
+                // Go to "work" location, e.g., Capitol
+                agent.SetDestination(new Vector3(0, 0, 0)); // Placeholder
+            }
+            else
+            {
+                currentBehavior = Behavior.Socialize;
+                // Socialize at random locations
+                Vector3 socialPoint = transform.position + Random.insideUnitSphere * 10f;
+                NavMeshHit hit;
+                if (NavMesh.SamplePosition(socialPoint, out hit, 10f, NavMesh.AllAreas))
+                {
+                    agent.SetDestination(hit.position);
+                }
+            }
+            yield return new WaitForSeconds(60f); // Check every minute
         }
     }
 }

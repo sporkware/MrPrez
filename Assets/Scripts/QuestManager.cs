@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class QuestManager : MonoBehaviour
 {
@@ -15,26 +16,9 @@ public class QuestManager : MonoBehaviour
 
     void InitializeQuests()
     {
-        // Main storyline quests
-        mainQuests = new List<Quest>
-        {
-            new Quest("Ascension", "Rise to power and deal with initial scandals", QuestType.Main),
-            new Quest("Corruption", "Navigate conspiracies and make tough choices", QuestType.Main),
-            new Quest("Downfall", "Face impeachment and decide the nation's fate", QuestType.Main)
-        };
-
-        // Side missions
-        sideQuests = new List<Quest>
-        {
-            new Quest("Rally Speech", "Deliver a speech to gain public support", QuestType.Side),
-            new Quest("Business Negotiation", "Negotiate a deal with corporate lobbyists", QuestType.Side),
-            new Quest("Diplomatic Meeting", "Host a state dinner for foreign diplomats", QuestType.Side),
-            new Quest("Covert Operation", "Eliminate a political rival discreetly", QuestType.Side),
-            new Quest("Scandalous Affair", "Navigate a romantic scandal with a celebrity (adult humor)", QuestType.Side),
-            new Quest("Casino Night", "Win big at a high-stakes poker game with politicians", QuestType.Side),
-            new Quest("Undercover Journalist", "Seduce and extract information from a reporter", QuestType.Side),
-            new Quest("Penthouse Party", "Attend an exclusive party with questionable activities", QuestType.Side)
-        };
+        // Load quests from Resources/Quests folder
+        // For now, assume assigned in inspector or create manually
+        // mainQuests and sideQuests should be assigned in Unity
     }
 
     public void StartQuest(Quest quest)
@@ -60,40 +44,74 @@ public class QuestManager : MonoBehaviour
         Debug.Log("Completed quest: " + quest.title);
     }
 
-    public void UpdateQuestProgress(Quest quest, string objective)
+    public void CheckQuestCompletion(Quest quest)
     {
-        // Update specific objective progress
-        // Implementation depends on objective type
+        if (quest.objectives.All(obj => obj.isCompleted))
+        {
+            CompleteQuest(quest);
+        }
+    }
+
+    public void UpdateQuestProgress(Quest quest, string objectiveDescription)
+    {
+        foreach (QuestObjective obj in quest.objectives)
+        {
+            if (obj.description == objectiveDescription)
+            {
+                obj.isCompleted = true;
+                CheckQuestCompletion(quest);
+                break;
+            }
+        }
     }
 }
 
-[System.Serializable]
-public class Quest
+[CreateAssetMenu(fileName = "New Quest", menuName = "Quest")]
+public class Quest : ScriptableObject
 {
     public string title;
     public string description;
     public QuestType type;
-    public bool isActive;
-    public bool isCompleted;
     public float approvalReward;
     public float influenceReward;
     public float wealthReward;
+    public QuestObjective[] objectives;
 
-    public Quest(string title, string description, QuestType type)
-    {
-        this.title = title;
-        this.description = description;
-        this.type = type;
-        this.isActive = false;
-        this.isCompleted = false;
-        this.approvalReward = 10f; // Default rewards
-        this.influenceReward = 5f;
-        this.wealthReward = 100f;
-    }
+    [System.NonSerialized] public bool isActive;
+    [System.NonSerialized] public bool isCompleted;
 }
 
 public enum QuestType
 {
     Main,
     Side
+}
+
+[System.Serializable]
+public class QuestObjective
+{
+    public string description;
+    public ObjectiveType type;
+    public int requiredAmount;
+    public int currentAmount;
+
+    [System.NonSerialized] public bool isCompleted;
+
+    public void UpdateProgress(int amount = 1)
+    {
+        currentAmount += amount;
+        if (currentAmount >= requiredAmount)
+        {
+            isCompleted = true;
+        }
+    }
+}
+
+public enum ObjectiveType
+{
+    Kill,
+    Collect,
+    Deliver,
+    Dialogue,
+    Location
 }
