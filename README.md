@@ -69,7 +69,7 @@ Assets/
 
 ## Getting Started (Development)
 
-1. Open this project in Unity 6.0 LTS (recommended) or 2022.3 LTS
+1. Open this project in Unity 2022.3 LTS or later
 2. Import required packages (URP, AI Navigation, TextMeshPro, Mirror for multiplayer)
 3. Set up scenes: MainMenu and GameWorld as per AGENTS.md
 4. Assign scripts to GameObjects and configure inspectors

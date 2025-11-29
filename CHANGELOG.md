@@ -48,7 +48,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Improved code consistency and performance
 
 ### Changed
-- Updated Unity version recommendation to 6.0 LTS
+- Updated Unity version recommendation to 2022.3 LTS
 - Enhanced TODO.md with completed tasks
 - Added asset management to AGENTS.md
 
