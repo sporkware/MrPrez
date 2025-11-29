@@ -11,6 +11,7 @@ public class PhoneSystem : MonoBehaviour
     public Button hangupButton;
 
     private Dialogue currentCallDialogue;
+    public Dialogue[] possibleCalls; // Assign in inspector
 
     void Awake()
     {
@@ -58,5 +59,20 @@ public class PhoneSystem : MonoBehaviour
         {
             player.ModifyApproval(-1f);
         }
+    }
+
+    public void TriggerRandomCall()
+    {
+        if (possibleCalls.Length > 0)
+        {
+            Dialogue randomCall = possibleCalls[Random.Range(0, possibleCalls.Length)];
+            IncomingCall(randomCall);
+        }
+    }
+
+    // Call this from events, like after quest or time-based
+    public void ScheduleCall(float delay)
+    {
+        Invoke("TriggerRandomCall", delay);
     }
 }
