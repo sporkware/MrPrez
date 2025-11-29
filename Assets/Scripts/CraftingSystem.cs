@@ -34,6 +34,13 @@ public class CraftingSystem : MonoBehaviour
             }
         }
 
+        // Check for adult content if recipe requires it
+        if (recipe.adultOnly && SettingsManager.Instance != null && !SettingsManager.Instance.adultContentEnabled)
+        {
+            Debug.Log("Adult content disabled, cannot craft " + recipeName);
+            return false;
+        }
+
         // Remove ingredients
         foreach (Item ingredient in recipe.ingredients)
         {
@@ -43,6 +50,13 @@ public class CraftingSystem : MonoBehaviour
         // Add result
         im.AddItem(recipe.result);
         Debug.Log("Crafted " + recipe.result.itemName);
+
+        // Special effects for certain crafts
+        if (recipeName == "Love Potion")
+        {
+            RomanceManager.Instance.FlirtWithNPC(FindObjectOfType<NPCController>()); // Example
+        }
+
         return true;
     }
 }
@@ -53,4 +67,5 @@ public class CraftingRecipe
     public string recipeName;
     public List<Item> ingredients;
     public Item result;
+    public bool adultOnly = false;
 }
