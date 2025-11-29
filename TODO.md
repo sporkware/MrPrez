@@ -153,6 +153,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Balance and polish code
 - Add press conference mini-game
 - Add hacking mini-game
+- Add random event system
 
 ## Unity Editor Tasks (User)
 
