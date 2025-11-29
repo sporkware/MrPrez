@@ -3,12 +3,12 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Core movement variables
-    public float moveSpeed = 5f;
+    public float moveSpeed = BalanceConstants.MoveSpeed;
     public float rotationSpeed = 100f;
-    public float jumpForce = 5f;
+    public float jumpForce = BalanceConstants.JumpForce;
 
     // Combat variables
-    public float fireRate = 0.5f;
+    public float fireRate = BalanceConstants.FireRate;
     public GameObject bulletPrefab;
     public Transform firePoint;
     public ParticleSystem muzzleFlash;
@@ -18,7 +18,7 @@ public class PlayerController : MonoBehaviour
     public Vehicle currentVehicle;
 
     // Health system
-    public float maxHealth = 100f;
+    public float maxHealth = BalanceConstants.MaxHealth;
     private float currentHealth;
 
     // Stats from GDD

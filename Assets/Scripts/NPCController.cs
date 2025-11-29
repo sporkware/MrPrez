@@ -11,10 +11,10 @@ public class NPCController : MonoBehaviour
     public NPCType npcType;
     public Faction faction;
     public Behavior currentBehavior;
-    public float moveSpeed = 3f;
+    public float moveSpeed = BalanceConstants.NPCSpeed;
     public float interactionDistance = 2f;
-    public float health = 100f;
-    public float maxHealth = 100f;
+    public float health = BalanceConstants.NPCHealth;
+    public float maxHealth = BalanceConstants.NPCHealth;
 
     private NavMeshAgent agent;
     private Animator animator;

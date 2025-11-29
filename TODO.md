@@ -146,11 +146,12 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Multiplayer considerations: Set up Mirror networking for co-op features, implement lobby system and matchmaking, add online leaderboards for achievements, ensure single-player functionality remains intact
 - Testing and balancing: Implement unit tests for core systems, balance stats, rewards, and difficulty curves, add cheat codes for development testing, perform playtesting and iterate based on feedback
 
-### In Progress
+### Completed
 - Add more gameplay features: Crafting system, phone calls, advanced AI
 - Enhance adult content: More romance mechanics, scandal events
 - Add mini-games: Card games, debates
 - Balance and polish code
+- Add press conference mini-game
 
 ## Unity Editor Tasks (User)
 

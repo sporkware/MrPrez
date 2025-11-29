@@ -7,6 +7,8 @@ public class PuzzleSystem : MonoBehaviour
     public Text puzzleText;
     public InputField answerInput;
     public Button submitButton;
+    public Button hintButton;
+    public Text hintText;
 
     private Puzzle currentPuzzle;
     private System.Action<bool> onPuzzleComplete;
@@ -15,6 +17,8 @@ public class PuzzleSystem : MonoBehaviour
     {
         puzzlePanel.SetActive(false);
         submitButton.onClick.AddListener(SubmitAnswer);
+        hintButton.onClick.AddListener(ShowHint);
+        hintText.gameObject.SetActive(false);
     }
 
     public void StartPuzzle(Puzzle puzzle, System.Action<bool> callback)
@@ -23,6 +27,7 @@ public class PuzzleSystem : MonoBehaviour
         onPuzzleComplete = callback;
         puzzleText.text = puzzle.question;
         answerInput.text = "";
+        hintText.gameObject.SetActive(false);
         puzzlePanel.SetActive(true);
         Time.timeScale = 0f; // Pause game
     }
@@ -55,6 +60,18 @@ public class PuzzleSystem : MonoBehaviour
             {
                 player.ModifyApproval(-2f);
             }
+        }
+    }
+
+    void ShowHint()
+    {
+        hintText.text = "Hint: " + currentPuzzle.hint;
+        hintText.gameObject.SetActive(true);
+        // Optional: penalty for using hint
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.ModifyApproval(-1f);
         }
     }
 }

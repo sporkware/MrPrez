@@ -82,4 +82,5 @@ public class Item
     public float approvalEffect;
     public float influenceEffect;
     public float corruptionEffect;
+    public float value; // For romance gifts
 }

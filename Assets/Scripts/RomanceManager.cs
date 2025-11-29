@@ -62,6 +62,56 @@ public class RomanceManager : MonoBehaviour
             player.ModifyCorruption(5f);
         }
         // End affairs or something
+        foreach (var kvp in relationships)
+        {
+            if (kvp.Value >= 50f)
+            {
+                kvp.Key.isInAffair = false;
+                relationships[kvp.Key] = Mathf.Max(0f, kvp.Value - 30f);
+            }
+        }
+    }
+
+    public void FlirtWithNPC(NPCController npc)
+    {
+        float charmBonus = FindObjectOfType<PlayerController>().charm / 100f;
+        float successChance = 0.5f + charmBonus;
+        if (Random.value < successChance)
+        {
+            ModifyRelationship(npc, 10f);
+            Debug.Log("Flirt successful with " + npc.npcType);
+        }
+        else
+        {
+            ModifyRelationship(npc, -5f);
+            Debug.Log("Flirt failed with " + npc.npcType);
+        }
+    }
+
+    public void GiveGift(NPCController npc, Item gift)
+    {
+        InventoryManager im = InventoryManager.Instance;
+        if (im.HasItem(gift.itemName))
+        {
+            im.RemoveItem(gift);
+            ModifyRelationship(npc, gift.value);
+            Debug.Log("Gave gift to " + npc.npcType + ", relationship increased by " + gift.value);
+        }
+    }
+
+    public void GoOnDate(NPCController npc)
+    {
+        if (relationships.ContainsKey(npc) && relationships[npc] >= 30f)
+        {
+            ModifyRelationship(npc, 15f);
+            PlayerController player = FindObjectOfType<PlayerController>();
+            player.ModifyWealth(-100f); // Date cost
+            Debug.Log("Went on date with " + npc.npcType);
+        }
+        else
+        {
+            Debug.Log("Not close enough for a date with " + npc.npcType);
+        }
     }
 }
 
