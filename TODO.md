@@ -55,7 +55,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 
 ## Low Priority Tasks
 
-### 9. Audio Integration
+### 9. Audio Integration ✅ COMPLETED
 - Add background music tracks (patriotic, tense, ambient)
 - Implement sound effects for actions (gunshots, car engines, footsteps)
 - Add voice lines for characters and radio broadcasts
@@ -168,6 +168,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add basic lobby functions to multiplayer
 - Add more balance constants and apply them
 - Add depth of field to post-processing
+- Add voice acting to dialogue system
 
 ## Unity Editor Tasks (User)
 

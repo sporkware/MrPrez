@@ -7,6 +7,7 @@ public class DialogueSystem : MonoBehaviour
     public Text dialogueText;
     public Button[] choiceButtons;
     public GameObject dialoguePanel;
+    public AudioSource voiceSource;
 
     private Queue<string> sentences;
     private Dialogue currentDialogue;
@@ -50,6 +51,12 @@ public class DialogueSystem : MonoBehaviour
 
         string sentence = sentences.Dequeue();
         dialogueText.text = currentDialogue.speakerName + ": " + sentence;
+        // Play voice clip
+        if (voiceSource != null && currentDialogue.audioClips != null && currentSentenceIndex < currentDialogue.audioClips.Length)
+        {
+            voiceSource.clip = currentDialogue.audioClips[currentSentenceIndex];
+            voiceSource.Play();
+        }
         currentSentenceIndex++;
     }
 
@@ -98,6 +105,7 @@ public class Dialogue : ScriptableObject
 {
     public string speakerName;
     public string[] sentences;
+    public AudioClip[] audioClips;
     public DialogueChoice[] choices;
 }
 
