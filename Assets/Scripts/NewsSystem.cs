@@ -11,7 +11,12 @@ public class NewsSystem : MonoBehaviour
         "Scandal Rocks White House!",
         "New Policy Passed Amid Controversy",
         "Economic Boom Predicted",
-        "International Tensions Rise"
+        "International Tensions Rise",
+        "President Seen Gambling in Vegas!",
+        "First Lady's Fashion Statement Divides Nation",
+        "Congress Approves Massive Spending Bill",
+        "Terror Alert Issued for Capital",
+        "President's Tweet Sparks Outrage"
     };
 
     void Start()

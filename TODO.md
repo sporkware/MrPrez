@@ -152,6 +152,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add mini-games: Card games, debates
 - Balance and polish code
 - Add press conference mini-game
+- Add hacking mini-game
 
 ## Unity Editor Tasks (User)
 
