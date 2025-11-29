@@ -169,6 +169,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add more balance constants and apply them
 - Add depth of field to post-processing
 - Add voice acting to dialogue system
+- Add asset loader script for management
 
 ## Unity Editor Tasks (User)
 

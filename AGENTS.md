@@ -24,3 +24,11 @@
 - Use ScriptableObjects for data (Dialogue, Quests)
 - Follow Unity component-based architecture
 - Maintain separation between UI, gameplay, and data layers
+
+## Asset Management
+- **3D Models**: Import from Unity Asset Store (e.g., "Low Poly White House", "US Capitol Building") or create in Blender. Assign to prefabs in WorldGenerator.
+- **Textures**: Use free textures from OpenGameArt or create in GIMP. Apply to materials (e.g., roadMaterial, skinMaterials).
+- **Animations**: Import from Mixamo or create in Blender. Assign to Animator controllers for Player/NPCs.
+- **Audio Clips**: Download free SFX from Freesound.org or Zapsplat. Assign to AudioManager (musicTracks, gunshotClip, etc.). For voices, record or use placeholders.
+- **ScriptableObjects**: Create via right-click in Unity: Dialogue, Quest, Achievement. Fill with data for content.
+- **Import Process**: Drag assets into Assets/ folder, set import settings (e.g., texture compression), assign in inspectors.
