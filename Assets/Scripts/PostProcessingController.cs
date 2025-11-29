@@ -35,6 +35,13 @@ public class PostProcessingController : MonoBehaviour
             {
                 bloom.intensity.value = Mathf.Lerp(0f, 5f, player.approvalRating / 100f);
             }
+
+            // Adjust depth of field based on corruption
+            DepthOfField depthOfField;
+            if (volume.profile.TryGetSettings(out depthOfField))
+            {
+                depthOfField.focusDistance.value = Mathf.Lerp(10f, 1f, player.corruptionLevel / 100f);
+            }
         }
     }
 }

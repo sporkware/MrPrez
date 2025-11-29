@@ -61,7 +61,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add voice lines for characters and radio broadcasts
 - Create dynamic audio mixing based on game state
 
-### 10. Visual Polish
+### 10. Visual Polish ✅ COMPLETED
 - Create custom shaders for corruption effects and special abilities
 - Add particle effects for explosions, muzzle flashes, and weather
 - Implement post-processing effects (bloom, depth of field, color grading)
@@ -167,6 +167,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add dynamic music based on corruption
 - Add basic lobby functions to multiplayer
 - Add more balance constants and apply them
+- Add depth of field to post-processing
 
 ## Unity Editor Tasks (User)
 
