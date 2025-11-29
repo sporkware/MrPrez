@@ -11,6 +11,8 @@ This file contains links to free or low-cost assets for the American President g
 - **NPCs**: [Cartoon People Pack on Unity Asset Store](https://assetstore.unity.com/packages/3d/characters/cartoon-people-pack-21741) - Free.
 - **Weapons**: [Low Poly Guns on Unity Asset Store](https://assetstore.unity.com/packages/3d/props/guns/low-poly-guns-163051) - Free.
 - **Props**: [Office Furniture on CGTrader](https://www.cgtrader.com/free-3d-models/furniture) - Free models.
+- **Helicopter**: [Low Poly Helicopter on Unity Asset Store](https://assetstore.unity.com/packages/3d/vehicles/air/low-poly-helicopter-13552) - Free.
+- **Motorcycle**: [Low Poly Motorcycle on Unity Asset Store](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-motorcycle-23342) - Free.
 
 ## Textures
 
@@ -24,6 +26,9 @@ This file contains links to free or low-cost assets for the American President g
 - **SFX**: [Gunshot Sounds on Freesound](https://freesound.org/search/?q=gunshot) - Free WAV files.
 - **Voice Lines**: Record your own or use [ElevenLabs](https://elevenlabs.io/) for AI-generated voices (free tier available).
 - **Ambient Sounds**: [City Ambience on Freesound](https://freesound.org/search/?q=city%20ambience) - Free WAV.
+- **Explosion Sounds**: [Explosion SFX on Freesound](https://freesound.org/search/?q=explosion) - Free WAV.
+- **Car Engine Sounds**: [Car Engine on Freesound](https://freesound.org/search/?q=car%20engine) - Free WAV.
+- **Footstep Sounds**: [Footsteps on Freesound](https://freesound.org/search/?q=footsteps) - Free WAV.
 
 ## Animations
 
@@ -34,6 +39,16 @@ This file contains links to free or low-cost assets for the American President g
 
 - **Icons**: [Free UI Icons on Freepik](https://www.freepik.com/search?query=ui%20icons) - PNG/SVG.
 - **Fonts**: [Google Fonts](https://fonts.google.com/) - Free for UI text.
+
+## Skyboxes & Environments
+
+- **Skybox**: [Free Skyboxes on OpenGameArt](https://opengameart.org/content/free-skyboxes) - Cubemap textures.
+- **Terrain Textures**: [Grass/Road Textures on OpenGameArt](https://opengameart.org/content/free-grass-and-dirt-textures) - Free PNG.
+
+## Particles
+
+- **Rain Particles**: [Particle Effects on Unity Asset Store](https://assetstore.unity.com/packages/vfx/particles/free-particle-effects-144361) - Free pack.
+- **Explosion Particles**: [Explosion VFX on Unity Asset Store](https://assetstore.unity.com/packages/vfx/particles/explosion-vfx-pack-24420) - Free.
 
 ## Instructions
 
