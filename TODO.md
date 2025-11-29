@@ -160,6 +160,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add screen shake to corruption overlay
 - Add bloom effect to post-processing
 - Add zoom to mini-map
+- Add fuel system to vehicles
 
 ## Unity Editor Tasks (User)
 

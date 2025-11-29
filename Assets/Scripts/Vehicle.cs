@@ -8,6 +8,8 @@ public class Vehicle : MonoBehaviour
     public float brakeForce = 20f;
     public float turnSpeed = 2f;
     public float maxSteerAngle = 30f;
+    public float maxFuel = 100f;
+    public float fuelConsumption = 1f;
 
     public WheelCollider[] wheelColliders;
     public Transform[] wheelTransforms;
@@ -15,12 +17,14 @@ public class Vehicle : MonoBehaviour
     private Rigidbody rb;
     private float currentSpeed;
     private float steerAngle;
+    private float currentFuel;
     public bool isOccupied = false;
     private static bool firstDrive = false;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        currentFuel = maxFuel;
     }
 
     void FixedUpdate()
@@ -38,13 +42,14 @@ public class Vehicle : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
 
         // Acceleration and braking
-        if (verticalInput > 0)
+        if (verticalInput > 0 && currentFuel > 0)
         {
             foreach (WheelCollider wheel in wheelColliders)
             {
                 wheel.motorTorque = verticalInput * acceleration;
                 wheel.brakeTorque = 0;
             }
+            currentFuel -= fuelConsumption * Time.deltaTime;
         }
         else if (verticalInput < 0)
         {
@@ -110,5 +115,15 @@ public class Vehicle : MonoBehaviour
         player.isDriving = false;
         player.gameObject.SetActive(true);
         isOccupied = false;
+    }
+
+    public void Refuel(float amount)
+    {
+        currentFuel = Mathf.Min(currentFuel + amount, maxFuel);
+    }
+
+    public float GetFuelPercentage()
+    {
+        return currentFuel / maxFuel;
     }
 }
