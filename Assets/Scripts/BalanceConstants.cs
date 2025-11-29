@@ -26,4 +26,14 @@ public static class BalanceConstants
     // Approval thresholds
     public const float ApprovalLow = 20f;
     public const float ApprovalHigh = 80f;
+
+    // Romance
+    public const float RomanceFlirtSuccessBase = 0.5f;
+    public const float RomanceGiftMultiplier = 1f;
+    public const float RomanceDateCost = 100f;
+
+    // Mini-games
+    public const int DebateCorrectReward = 5;
+    public const int CardWinWealth = 500;
+    public const int HackingTimeLimit = 30;
 }

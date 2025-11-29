@@ -166,6 +166,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add save/load for character customization
 - Add dynamic music based on corruption
 - Add basic lobby functions to multiplayer
+- Add more balance constants and apply them
 
 ## Unity Editor Tasks (User)
 

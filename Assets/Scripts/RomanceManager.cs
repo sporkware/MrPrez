@@ -80,7 +80,7 @@ public class RomanceManager : MonoBehaviour
     public void FlirtWithNPC(NPCController npc)
     {
         float charmBonus = FindObjectOfType<PlayerController>().charm / 100f;
-        float successChance = 0.5f + charmBonus;
+        float successChance = BalanceConstants.RomanceFlirtSuccessBase + charmBonus;
         if (Random.value < successChance)
         {
             ModifyRelationship(npc, 10f);
@@ -110,7 +110,7 @@ public class RomanceManager : MonoBehaviour
         {
             ModifyRelationship(npc, 15f);
             PlayerController player = FindObjectOfType<PlayerController>();
-            player.ModifyWealth(-100f); // Date cost
+            player.ModifyWealth(-BalanceConstants.RomanceDateCost);
             Debug.Log("Went on date with " + npc.npcType);
         }
         else

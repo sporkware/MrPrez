@@ -8,7 +8,7 @@ public class HackingMiniGame : MonoBehaviour
     public InputField inputField;
     public Button submitButton;
     public GameObject hackingPanel;
-    public float timeLimit = 30f;
+    public float timeLimit = BalanceConstants.HackingTimeLimit;
 
     private string correctCode;
     private float timeRemaining;
