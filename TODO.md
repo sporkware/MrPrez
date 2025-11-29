@@ -171,6 +171,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add voice acting to dialogue system
 - Add asset loader script for management
 - Update README.md with full feature list
+- Add CHANGELOG.md with project history
 
 ## Unity Editor Tasks (User)
 
