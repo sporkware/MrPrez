@@ -161,6 +161,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add bloom effect to post-processing
 - Add zoom to mini-map
 - Add fuel system to vehicles
+- Add story manager for act progression
 
 ## Unity Editor Tasks (User)
 
