@@ -156,6 +156,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add random event system
 - Add item usage system
 - Add more cheat codes
+- Enhance unit tests
 
 ## Unity Editor Tasks (User)
 
