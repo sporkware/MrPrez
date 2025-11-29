@@ -45,6 +45,22 @@ public class StoryManager : MonoBehaviour
         {
             StartAct3();
         }
+        else if (currentAct == Act.Act3)
+        {
+            // Check for end game
+            if (player.approvalRating <= 10f)
+            {
+                EndGame(false); // Impeached
+            }
+            else if (player.corruptionLevel >= 90f)
+            {
+                EndGame(true); // Dictator
+            }
+            else if (player.approvalRating >= 90f && player.influence >= 90f)
+            {
+                EndGame(true); // Re-elected
+            }
+        }
     }
 
     void StartAct1()

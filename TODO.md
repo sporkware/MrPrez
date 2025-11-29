@@ -162,6 +162,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add zoom to mini-map
 - Add fuel system to vehicles
 - Add story manager for act progression
+- Add end game conditions for multiple endings
 
 ## Unity Editor Tasks (User)
 
