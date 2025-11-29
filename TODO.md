@@ -173,6 +173,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Update README.md with full feature list
 - Add CHANGELOG.md with project history
 - Add MIT LICENSE file
+- Create ASSETDL.md with download links
 
 ## Unity Editor Tasks (User)
 
