@@ -209,6 +209,24 @@ public class PlayerController : MonoBehaviour
             wealth = 10000f;
             corruptionLevel = 0f;
         }
+        if (Input.GetKeyDown(KeyCode.M))
+        {
+            // Money cheat
+            wealth += 10000f;
+            Debug.Log("Added $10,000");
+        }
+        if (Input.GetKeyDown(KeyCode.H))
+        {
+            // Health cheat
+            currentHealth = maxHealth;
+            Debug.Log("Health restored");
+        }
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            // Approval cheat
+            approvalRating = 100f;
+            Debug.Log("Approval maxed");
+        }
     }
 
     private void CheckAchievements()
