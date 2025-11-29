@@ -13,6 +13,8 @@ This file contains links to free or low-cost assets for the American President g
 - **Props**: [Office Furniture on CGTrader](https://www.cgtrader.com/free-3d-models/furniture) - Free models.
 - **Helicopter**: [Low Poly Helicopter on Unity Asset Store](https://assetstore.unity.com/packages/3d/vehicles/air/low-poly-helicopter-13552) - Free.
 - **Motorcycle**: [Low Poly Motorcycle on Unity Asset Store](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-motorcycle-23342) - Free.
+- **Urban Buildings**: [Low Poly Buildings on Unity Asset Store](https://assetstore.unity.com/packages/3d/environments/urban/low-poly-buildings-pack-100058) - Free.
+- **Crowd NPCs**: [Crowd Pack on Unity Asset Store](https://assetstore.unity.com/packages/3d/characters/crowd-pack-1-161147) - Free.
 
 ## Textures
 
@@ -29,6 +31,7 @@ This file contains links to free or low-cost assets for the American President g
 - **Explosion Sounds**: [Explosion SFX on Freesound](https://freesound.org/search/?q=explosion) - Free WAV.
 - **Car Engine Sounds**: [Car Engine on Freesound](https://freesound.org/search/?q=car%20engine) - Free WAV.
 - **Footstep Sounds**: [Footsteps on Freesound](https://freesound.org/search/?q=footsteps) - Free WAV.
+- **Radio Broadcasts**: [News Radio on Freesound](https://freesound.org/search/?q=news%20radio) - Free WAV for placeholders.
 
 ## Animations
 
@@ -49,6 +52,11 @@ This file contains links to free or low-cost assets for the American President g
 
 - **Rain Particles**: [Particle Effects on Unity Asset Store](https://assetstore.unity.com/packages/vfx/particles/free-particle-effects-144361) - Free pack.
 - **Explosion Particles**: [Explosion VFX on Unity Asset Store](https://assetstore.unity.com/packages/vfx/particles/explosion-vfx-pack-24420) - Free.
+
+## Shaders & Effects
+
+- **Corruption Shaders**: [Free Shader Graph Examples on Unity Learn](https://learn.unity.com/tutorial/shader-graph-introduction) - Tutorials for custom shaders.
+- **Post-Processing Profiles**: [Free Post-Processing Stack on Unity Asset Store](https://assetstore.unity.com/packages/essentials/post-processing-stack-83912) - Free.
 
 ## Instructions
 
