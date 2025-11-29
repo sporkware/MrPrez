@@ -29,6 +29,7 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         PlayMusic(0); // Play first track
+        InvokeRepeating("UpdateMusic", 10f, 10f); // Check every 10 seconds
     }
 
     public void PlayMusic(int trackIndex)
@@ -61,5 +62,21 @@ public class AudioManager : MonoBehaviour
     public void PlayFootsteps()
     {
         PlaySFX(footstepsClip);
+    }
+
+    private void UpdateMusic()
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            if (player.corruptionLevel > 50f && musicTracks.Length > 1)
+            {
+                PlayMusic(1); // Tense track
+            }
+            else
+            {
+                PlayMusic(0); // Patriotic track
+            }
+        }
     }
 }

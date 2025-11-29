@@ -164,6 +164,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add story manager for act progression
 - Add end game conditions for multiple endings
 - Add save/load for character customization
+- Add dynamic music based on corruption
 
 ## Unity Editor Tasks (User)
 
