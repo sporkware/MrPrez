@@ -67,7 +67,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Implement post-processing effects (bloom, depth of field, color grading)
 - Add LOD (Level of Detail) for performance optimization
 
-### 11. Multiplayer Considerations
+### 11. Multiplayer Considerations ✅ COMPLETED
 - Set up Mirror networking for co-op features
 - Implement lobby system and matchmaking
 - Add online leaderboards for achievements
@@ -175,6 +175,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add MIT LICENSE file
 - Create ASSETDL.md with download links
 - Add detailed Unity setup instructions to ASSETDL.md
+- Add assassination attempts to random events
 
 ## Unity Editor Tasks (User)
 

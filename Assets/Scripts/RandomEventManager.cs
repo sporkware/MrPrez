@@ -62,6 +62,21 @@ public class RandomEvent
             {
                 player.ModifyWealth(1000f);
             }
+            else if (eventName.Contains("Assassination"))
+            {
+                // Assassination attempt
+                if (Random.value < 0.5f) // 50% chance to succeed
+                {
+                    player.currentHealth -= 50f;
+                    Debug.Log("Assassination attempt! You were injured.");
+                    player.ModifyApproval(-10f);
+                }
+                else
+                {
+                    Debug.Log("Assassination attempt thwarted!");
+                    player.ModifyInfluence(5f);
+                }
+            }
             // Add more logic
         }
     }
