@@ -68,9 +68,9 @@ This file contains links to free or low-cost assets for the American President g
 
 ## Unity Setup Instructions
 
-1. **Install Unity 6.0 LTS**:
+1. **Install Unity 2022.3 LTS or later**:
    - Open Unity Hub.
-   - Go to Installs > Install Editor > Select Unity 6.0.x LTS > Install.
+   - Go to Installs > Install Editor > Select Unity 2022.3.x LTS > Install.
 
 2. **Open Project**:
    - In Unity Hub, go to Projects > Add > Select the /home/a/mrprez folder.
@@ -100,6 +100,10 @@ This file contains links to free or low-cost assets for the American President g
 8. **Test Build**:
    - File > Build Settings > Add scenes > Build.
    - Run TestRunner for unit tests.
+
+## Direct Download Repos
+
+- **Top Assets For Unity Free**: [GitHub Repo](https://github.com/phancyn/Top-Assets-For-Unity-Free) - Free Unity assets with direct download links in releases.
 
 ## Notes
 
