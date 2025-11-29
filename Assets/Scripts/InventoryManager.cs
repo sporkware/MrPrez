@@ -54,6 +54,27 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem(Item item)
     {
+        if (inventory.Contains(item) && item.consumable)
+        {
+            RemoveItem(item);
+            ApplyItemEffects(item);
+        }
+    }
+
+    private void ApplyItemEffects(Item item)
+    {
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
+        {
+            player.ModifyApproval(item.approvalEffect);
+            player.ModifyInfluence(item.influenceEffect);
+            player.ModifyCorruption(item.corruptionEffect);
+            // Add health or other effects if needed
+        }
+    }
+
+    public void UseItem(Item item)
+    {
         // Implement item usage logic
         Debug.Log("Used " + item.itemName);
         // Apply effects, e.g., modify player stats
