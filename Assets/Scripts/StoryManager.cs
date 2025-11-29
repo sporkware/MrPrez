@@ -67,6 +67,8 @@ public class StoryManager : MonoBehaviour
     {
         currentAct = Act.Act1;
         Debug.Log("Starting Act 1: Ascension");
+        // Inauguration ceremony
+        TriggerInauguration();
         // Assign initial quests
         if (questManager != null && questManager.mainQuests.Count > 0)
         {
@@ -74,12 +76,28 @@ public class StoryManager : MonoBehaviour
         }
     }
 
+    void TriggerInauguration()
+    {
+        Debug.Log("Inauguration Ceremony: Swear in as President");
+        player.ModifyApproval(20f); // Boost from ceremony
+        // Play voice line or cutscene
+        AudioManager.Instance.PlayVoiceLine("inauguration");
+    }
+
     void StartAct2()
     {
         currentAct = Act.Act2;
         Debug.Log("Starting Act 2: Corruption");
         // Trigger conspiracies, tougher choices
+        TriggerConspiracy();
         RandomEventManager.Instance.TriggerRandomEvent(); // Example
+    }
+
+    void TriggerConspiracy()
+    {
+        Debug.Log("Conspiracy Alert: Opposition plotting against you");
+        player.ModifyInfluence(-10f);
+        // Unlock conspiracy quest
     }
 
     void StartAct3()
@@ -87,13 +105,35 @@ public class StoryManager : MonoBehaviour
         currentAct = Act.Act3;
         Debug.Log("Starting Act 3: Downfall");
         // Impeachment proceedings
+        TriggerImpeachment();
         player.ModifyApproval(-20f);
         // Final quest
     }
 
+    void TriggerImpeachment()
+    {
+        Debug.Log("Impeachment Hearings: Defend your presidency");
+        // Start debate mini-game or quest
+    }
+
     public void EndGame(bool victory)
     {
-        Debug.Log(victory ? "Player wins!" : "Player loses!");
-        // Show end screen
+        if (victory)
+        {
+            if (player.approvalRating >= 90f)
+            {
+                Debug.Log("Ending: Re-elected President!");
+            }
+            else if (player.corruptionLevel >= 90f)
+            {
+                Debug.Log("Ending: Become Dictator!");
+            }
+        }
+        else
+        {
+            Debug.Log("Ending: Impeached and removed from office!");
+        }
+        // Show end screen, disable gameplay
+        Time.timeScale = 0;
     }
 }

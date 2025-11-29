@@ -9,6 +9,8 @@ public class SettingsManager : MonoBehaviour
     public float sfxVolume = 1f;
     public float mouseSensitivity = 1f;
     public int graphicsQuality = 2; // 0 low, 1 medium, 2 high
+    public bool adultContentEnabled = false; // Toggle for Leisure Suit Larry style content
+    public int difficultyLevel = 1; // 0 easy, 1 normal, 2 hard - affects rewards/penalties
 
     void Awake()
     {
@@ -31,6 +33,8 @@ public class SettingsManager : MonoBehaviour
         PlayerPrefs.SetFloat("SFXVolume", sfxVolume);
         PlayerPrefs.SetFloat("MouseSensitivity", mouseSensitivity);
         PlayerPrefs.SetInt("GraphicsQuality", graphicsQuality);
+        PlayerPrefs.SetInt("AdultContentEnabled", adultContentEnabled ? 1 : 0);
+        PlayerPrefs.SetInt("DifficultyLevel", difficultyLevel);
         PlayerPrefs.Save();
     }
 
@@ -41,6 +45,8 @@ public class SettingsManager : MonoBehaviour
         sfxVolume = PlayerPrefs.GetFloat("SFXVolume", 1f);
         mouseSensitivity = PlayerPrefs.GetFloat("MouseSensitivity", 1f);
         graphicsQuality = PlayerPrefs.GetInt("GraphicsQuality", 2);
+        adultContentEnabled = PlayerPrefs.GetInt("AdultContentEnabled", 0) == 1;
+        difficultyLevel = PlayerPrefs.GetInt("DifficultyLevel", 1);
         ApplySettings();
     }
 

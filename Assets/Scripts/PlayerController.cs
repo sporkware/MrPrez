@@ -227,6 +227,28 @@ public class PlayerController : MonoBehaviour
             approvalRating = 100f;
             Debug.Log("Approval maxed");
         }
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            // Influence cheat
+            influence = 100f;
+            Debug.Log("Influence maxed");
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            // Corruption reset
+            corruptionLevel = 0f;
+            Debug.Log("Corruption reset");
+        }
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            // Fuel refill for vehicle
+            Vehicle vehicle = FindObjectOfType<Vehicle>();
+            if (vehicle != null)
+            {
+                vehicle.Refuel(100f);
+                Debug.Log("Vehicle refueled");
+            }
+        }
     }
 
     private void CheckAchievements()

@@ -36,4 +36,31 @@ public static class BalanceConstants
     public const int DebateCorrectReward = 5;
     public const int CardWinWealth = 500;
     public const int HackingTimeLimit = 30;
+
+    // Weather
+    public const float RainIntensity = 0.5f;
+    public const float FogDensity = 0.1f;
+    public const float DayNightCycleSpeed = 0.01f;
+
+    // Random Events
+    public const float ProtestSpawnChance = 0.1f;
+    public const float AccidentSpawnChance = 0.05f;
+    public const float NewsBroadcastInterval = 60f;
+
+    // AI
+    public const float NPCPatrolRadius = 10f;
+    public const float NPCFollowDistance = 5f;
+    public const float NPCFleeDistance = 2f;
+
+    // Inventory
+    public const int MaxInventorySlots = 20;
+    public const float ItemUseCooldown = 1f;
+
+    // Fuel
+    public const float VehicleFuelCapacity = 100f;
+    public const float VehicleFuelConsumption = 1f;
+
+    // Post-processing
+    public const float BloomIntensity = 1f;
+    public const float DepthOfFieldFocusDistance = 10f;
 }

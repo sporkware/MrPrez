@@ -26,9 +26,22 @@ public class DialogueSystem : MonoBehaviour
         dialoguePanel.SetActive(true);
         sentences.Clear();
 
-        foreach (string sentence in dialogue.sentences)
+        // Customize sentences based on player stats for satire
+        PlayerController player = FindObjectOfType<PlayerController>();
+        if (player != null)
         {
-            sentences.Enqueue(sentence);
+            foreach (string sentence in dialogue.sentences)
+            {
+                string customized = CustomizeSentence(sentence, player);
+                sentences.Enqueue(customized);
+            }
+        }
+        else
+        {
+            foreach (string sentence in dialogue.sentences)
+            {
+                sentences.Enqueue(sentence);
+            }
         }
 
         DisplayNextSentence();
@@ -39,6 +52,38 @@ public class DialogueSystem : MonoBehaviour
             firstDialogue = true;
             AchievementManager.Instance.UnlockAchievement("First Conversation");
         }
+    }
+
+    private string CustomizeSentence(string sentence, PlayerController player)
+    {
+        // Satirical customizations
+        if (sentence.Contains("[APPROVAL]"))
+        {
+            if (player.approvalRating > 80f)
+            {
+                return sentence.Replace("[APPROVAL]", "Oh, Mr. President, you're so popular!");
+            }
+            else if (player.approvalRating < 20f)
+            {
+                return sentence.Replace("[APPROVAL]", "Sir, the polls are not looking good...");
+            }
+            else
+            {
+                return sentence.Replace("[APPROVAL]", "How's the approval rating holding up?");
+            }
+        }
+        if (sentence.Contains("[CORRUPTION]"))
+        {
+            if (player.corruptionLevel > 50f)
+            {
+                return sentence.Replace("[CORRUPTION]", "I hear some... interesting rumors about you.");
+            }
+            else
+            {
+                return sentence.Replace("[CORRUPTION]", "You're a model of integrity, sir.");
+            }
+        }
+        return sentence;
     }
 
     public void DisplayNextSentence()

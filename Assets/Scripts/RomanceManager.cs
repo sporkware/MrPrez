@@ -59,14 +59,16 @@ public class RomanceManager : MonoBehaviour
 
     private void TriggerScandal()
     {
-        Debug.Log("Scandal broke out!");
+        string[] scandalTypes = { "Paparazzi caught you!", "Leaked emails!", "Secret rendezvous exposed!" };
+        string scandal = scandalTypes[Random.Range(0, scandalTypes.Length)];
+        Debug.Log("Scandal: " + scandal);
         PlayerController player = FindObjectOfType<PlayerController>();
         if (player != null)
         {
             player.ModifyApproval(-20f);
             player.ModifyCorruption(5f);
         }
-        // End affairs or something
+        // End affairs
         foreach (var kvp in relationships)
         {
             if (kvp.Value >= 50f)

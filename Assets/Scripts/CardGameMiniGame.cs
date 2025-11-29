@@ -9,6 +9,10 @@ public class CardGameMiniGame : MonoBehaviour
 
     private int playerScore = 0;
     private int opponentScore = 0;
+    private int rounds = 3;
+    private int currentRound = 0;
+    private int playerWins = 0;
+    private int opponentWins = 0;
     private System.Action<bool> onGameEnd;
 
     void Start()
@@ -21,11 +25,20 @@ public class CardGameMiniGame : MonoBehaviour
     public void StartGame(System.Action<bool> callback)
     {
         onGameEnd = callback;
-        playerScore = 0;
-        opponentScore = Random.Range(15, 22);
-        gameText.text = "Your turn. Opponent has " + opponentScore + " points.";
+        currentRound = 0;
+        playerWins = 0;
+        opponentWins = 0;
+        StartRound();
         cardGamePanel.SetActive(true);
         Time.timeScale = 0f;
+    }
+
+    private void StartRound()
+    {
+        currentRound++;
+        playerScore = 0;
+        opponentScore = Random.Range(15, 22);
+        gameText.text = "Round " + currentRound + ". Your turn. Opponent has " + opponentScore + " points.";
     }
 
     private void PlayCard(string action)
@@ -34,21 +47,37 @@ public class CardGameMiniGame : MonoBehaviour
         {
             int card = Random.Range(1, 11);
             playerScore += card;
-            gameText.text = "You drew " + card + ". Total: " + playerScore;
+            gameText.text = "Round " + currentRound + ". You drew " + card + ". Total: " + playerScore;
             if (playerScore > 21)
             {
-                EndGame(false);
+                opponentWins++;
+                if (currentRound < rounds)
+                {
+                    StartRound();
+                }
+                else
+                {
+                    EndGame(playerWins > opponentWins);
+                }
             }
         }
         else if (action == "Stand")
         {
             if (playerScore > opponentScore || opponentScore > 21)
             {
-                EndGame(true);
+                playerWins++;
             }
             else
             {
-                EndGame(false);
+                opponentWins++;
+            }
+            if (currentRound < rounds)
+            {
+                StartRound();
+            }
+            else
+            {
+                EndGame(playerWins > opponentWins);
             }
         }
     }
@@ -64,8 +93,8 @@ public class CardGameMiniGame : MonoBehaviour
         {
             if (win)
             {
-                player.ModifyWealth(500f);
-                player.ModifyInfluence(1f);
+                player.ModifyWealth(500f * playerWins);
+                player.ModifyInfluence(playerWins);
                 if (AchievementManager.Instance != null)
                 {
                     AchievementManager.Instance.UnlockAchievement("Card Shark");
@@ -73,7 +102,7 @@ public class CardGameMiniGame : MonoBehaviour
             }
             else
             {
-                player.ModifyWealth(-200f);
+                player.ModifyWealth(-200f * opponentWins);
             }
         }
     }

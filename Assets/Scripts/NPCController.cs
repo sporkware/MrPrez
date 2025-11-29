@@ -114,52 +114,69 @@ public class NPCController : MonoBehaviour
     Dialogue CreateDialogueForType()
     {
         Dialogue dialogue = new Dialogue();
+        bool adultEnabled = SettingsManager.Instance != null && SettingsManager.Instance.adultContentEnabled;
 
         switch (npcType)
         {
             case NPCType.Citizen:
-                dialogue.sentences = new string[] { "Hello, Mr. President!", "How are you today?" };
-                dialogue.choices = new DialogueChoice[]
+                dialogue.sentences = new string[] { "Oh, Mr. President! You're even more handsome in person!", "Care for a selfie? Or something more... presidential?" };
+                var choices = new System.Collections.Generic.List<DialogueChoice>
                 {
                     new DialogueChoice { choiceText = "I'm doing great, thank you!", approvalChange = 2f },
-                    new DialogueChoice { choiceText = "Mind your own business.", approvalChange = -5f, corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Want to grab a drink later? (Flirt)", approvalChange = 1f, influenceChange = 1f, corruptionChange = 0.5f },
-                    new DialogueChoice { choiceText = "Care to join me in the Oval Office? (Seduce)", approvalChange = -1f, influenceChange = 2f, corruptionChange = 2f },
-                    new DialogueChoice { choiceText = "You look stunning tonight. Fancy a private tour? (Bold Flirt)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 3f, nextDialogue = null } // Can lead to affair
+                    new DialogueChoice { choiceText = "Mind your own business.", approvalChange = -5f, corruptionChange = 1f }
                 };
+                if (adultEnabled)
+                {
+                    choices.Add(new DialogueChoice { choiceText = "Want to grab a drink later? (Flirt)", approvalChange = 1f, influenceChange = 1f, corruptionChange = 0.5f });
+                    choices.Add(new DialogueChoice { choiceText = "Care to join me in the Oval Office? (Seduce)", approvalChange = -1f, influenceChange = 2f, corruptionChange = 2f });
+                    choices.Add(new DialogueChoice { choiceText = "You look stunning tonight. Fancy a private tour? (Bold Flirt)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 3f, nextDialogue = null }); // Can lead to affair
+                }
+                dialogue.choices = choices.ToArray();
                 break;
             case NPCType.Politician:
-                dialogue.sentences = new string[] { "We need to discuss policy.", "What's your stance on this issue?" };
-                dialogue.choices = new DialogueChoice[]
+                dialogue.sentences = new string[] { "Sir, the polls are down, but your... charisma is up!", "Let's talk policy... or perhaps adjourn to a more private session?" };
+                var polChoices = new System.Collections.Generic.List<DialogueChoice>
                 {
                     new DialogueChoice { choiceText = "I support progressive reforms.", approvalChange = 3f, influenceChange = 2f },
                     new DialogueChoice { choiceText = "Let's cut taxes for the wealthy.", approvalChange = -2f, influenceChange = 3f, corruptionChange = 2f },
-                    new DialogueChoice { choiceText = "Tell me a joke to lighten the mood.", approvalChange = 1f },
-                    new DialogueChoice { choiceText = "How about we discuss this over dinner... and more? (Bribe)", approvalChange = -3f, influenceChange = 4f, corruptionChange = 3f },
-                    new DialogueChoice { choiceText = "I have some compromising photos. Support my bill or else. (Blackmail)", approvalChange = -5f, influenceChange = 5f, corruptionChange = 4f }
+                    new DialogueChoice { choiceText = "Tell me a joke to lighten the mood.", approvalChange = 1f }
                 };
+                if (adultEnabled)
+                {
+                    polChoices.Add(new DialogueChoice { choiceText = "How about we discuss this over dinner... and more? (Bribe)", approvalChange = -3f, influenceChange = 4f, corruptionChange = 3f });
+                    polChoices.Add(new DialogueChoice { choiceText = "I have some compromising photos. Support my bill or else. (Blackmail)", approvalChange = -5f, influenceChange = 5f, corruptionChange = 4f });
+                }
+                dialogue.choices = polChoices.ToArray();
                 break;
             case NPCType.Advisor:
                 dialogue.sentences = new string[] { "Sir, we have a situation.", "How should we handle this scandal?" };
-                dialogue.choices = new DialogueChoice[]
+                var advChoices = new System.Collections.Generic.List<DialogueChoice>
                 {
                     new DialogueChoice { choiceText = "Cover it up discreetly.", approvalChange = -1f, corruptionChange = 3f },
                     new DialogueChoice { choiceText = "Come clean to the public.", approvalChange = 4f, influenceChange = -1f },
-                    new DialogueChoice { choiceText = "Blame it on the media.", approvalChange = -3f, corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Let's make this scandal... disappear. (Blackmail)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 4f },
-                    new DialogueChoice { choiceText = "I need your help with a personal matter. Keep this quiet. (Affair)", approvalChange = -4f, influenceChange = 4f, corruptionChange = 5f }
+                    new DialogueChoice { choiceText = "Blame it on the media.", approvalChange = -3f, corruptionChange = 1f }
                 };
+                if (adultEnabled)
+                {
+                    advChoices.Add(new DialogueChoice { choiceText = "Let's make this scandal... disappear. (Blackmail)", approvalChange = -2f, influenceChange = 3f, corruptionChange = 4f });
+                    advChoices.Add(new DialogueChoice { choiceText = "I need your help with a personal matter. Keep this quiet. (Affair)", approvalChange = -4f, influenceChange = 4f, corruptionChange = 5f });
+                }
+                dialogue.choices = advChoices.ToArray();
                 break;
             case NPCType.Antagonist:
                 dialogue.sentences = new string[] { "You think you can get away with this?", "Your days are numbered!" };
-                dialogue.choices = new DialogueChoice[]
+                var antChoices = new System.Collections.Generic.List<DialogueChoice>
                 {
                     new DialogueChoice { choiceText = "Bring it on!", approvalChange = 1f, influenceChange = 1f },
                     new DialogueChoice { choiceText = "Let's negotiate.", influenceChange = 2f },
-                    new DialogueChoice { choiceText = "Make my day. (Threaten)", corruptionChange = 1f },
-                    new DialogueChoice { choiceText = "Perhaps we can... arrange something mutually beneficial. (Seduce)", approvalChange = -1f, influenceChange = 3f, corruptionChange = 2f },
-                    new DialogueChoice { choiceText = "I've got dirt on you too. Let's call a truce... intimately. (Truce with Benefits)", approvalChange = 2f, influenceChange = 4f, corruptionChange = 3f }
+                    new DialogueChoice { choiceText = "Make my day. (Threaten)", corruptionChange = 1f }
                 };
+                if (adultEnabled)
+                {
+                    antChoices.Add(new DialogueChoice { choiceText = "Perhaps we can... arrange something mutually beneficial. (Seduce)", approvalChange = -1f, influenceChange = 3f, corruptionChange = 2f });
+                    antChoices.Add(new DialogueChoice { choiceText = "I've got dirt on you too. Let's call a truce... intimately. (Truce with Benefits)", approvalChange = 2f, influenceChange = 4f, corruptionChange = 3f });
+                }
+                dialogue.choices = antChoices.ToArray();
                 break;
         }
 

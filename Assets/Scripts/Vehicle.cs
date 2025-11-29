@@ -3,13 +3,13 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody))]
 public class Vehicle : MonoBehaviour
 {
-    public float maxSpeed = 20f;
-    public float acceleration = 10f;
+    public float maxSpeed = BalanceConstants.VehicleMaxSpeed;
+    public float acceleration = BalanceConstants.VehicleAcceleration;
     public float brakeForce = 20f;
     public float turnSpeed = 2f;
     public float maxSteerAngle = 30f;
-    public float maxFuel = 100f;
-    public float fuelConsumption = 1f;
+    public float maxFuel = BalanceConstants.VehicleFuelCapacity;
+    public float fuelConsumption = BalanceConstants.VehicleFuelConsumption;
 
     public WheelCollider[] wheelColliders;
     public Transform[] wheelTransforms;
