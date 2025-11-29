@@ -15,8 +15,16 @@ An open-world satirical simulator inspired by Grand Theft Auto, where you play a
 - **Political Simulation**: Make decisions that affect approval rating, influence, and corruption
 - **Missions**: Main storyline and side quests involving rallies, negotiations, and covert ops
 - **Combat**: Shooting, melee, and non-lethal options
-- **Dialogue System**: Branching conversations with consequences
+- **Dialogue System**: Branching conversations with consequences and voice acting
 - **Dynamic World**: Weather, day/night cycle, NPC schedules, random events
+- **Mini-Games**: Card games, debates, press conferences, hacking, puzzles
+- **Romance & Scandals**: Adult-themed interactions with consequences
+- **Crafting & Inventory**: Item collection, crafting, and usage
+- **Multiplayer Basics**: Lobby and networking setup for co-op
+- **Audio & Visual Polish**: Dynamic music, post-processing effects, corruption overlays
+- **Save/Load**: Full game state persistence
+- **Achievements**: Unlockables for various actions
+- **Cheats**: Development testing codes
 
 ## Project Structure
 
@@ -39,12 +47,12 @@ Assets/
 
 ## Getting Started
 
-1. Open this project in Unity 2022.3 LTS or later
-2. Import required packages (URP, AI Navigation, etc.)
-3. Set up the main scene based on MainMenu.txt
-4. Implement missing components (vehicles, buildings, NPCs)
-5. Add assets (models, textures, audio)
-6. Test and iterate
+1. Open this project in Unity 6.0 LTS (recommended) or 2022.3 LTS
+2. Import required packages (URP, AI Navigation, TextMeshPro, Mirror for multiplayer)
+3. Set up scenes: MainMenu and GameWorld as per AGENTS.md
+4. Assign scripts to GameObjects and configure inspectors
+5. Add assets (models, textures, audio) via Asset Store or free sources
+6. Run TestRunner for unit tests, then playtest
 
 ## Build Instructions
 
