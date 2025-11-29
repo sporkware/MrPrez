@@ -163,6 +163,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add fuel system to vehicles
 - Add story manager for act progression
 - Add end game conditions for multiple endings
+- Add save/load for character customization
 
 ## Unity Editor Tasks (User)
 

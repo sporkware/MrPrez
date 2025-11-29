@@ -13,6 +13,7 @@ public class CharacterCustomization : MonoBehaviour
 
     void Start()
     {
+        LoadCustomization();
         ApplyCustomization();
     }
 
@@ -20,18 +21,21 @@ public class CharacterCustomization : MonoBehaviour
     {
         currentSkin = (currentSkin + 1) % skinMaterials.Length;
         ApplyCustomization();
+        SaveCustomization();
     }
 
     public void NextSuit()
     {
         currentSuit = (currentSuit + 1) % suitMaterials.Length;
         ApplyCustomization();
+        SaveCustomization();
     }
 
     public void NextHair()
     {
         currentHair = (currentHair + 1) % hairStyles.Length;
         ApplyCustomization();
+        SaveCustomization();
     }
 
     private void ApplyCustomization()
@@ -47,5 +51,20 @@ public class CharacterCustomization : MonoBehaviour
             hair.SetActive(false);
         }
         hairStyles[currentHair].SetActive(true);
+    }
+
+    private void SaveCustomization()
+    {
+        PlayerPrefs.SetInt("CurrentSkin", currentSkin);
+        PlayerPrefs.SetInt("CurrentSuit", currentSuit);
+        PlayerPrefs.SetInt("CurrentHair", currentHair);
+        PlayerPrefs.Save();
+    }
+
+    private void LoadCustomization()
+    {
+        currentSkin = PlayerPrefs.GetInt("CurrentSkin", 0);
+        currentSuit = PlayerPrefs.GetInt("CurrentSuit", 0);
+        currentHair = PlayerPrefs.GetInt("CurrentHair", 0);
     }
 }
