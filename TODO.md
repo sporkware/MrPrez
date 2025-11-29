@@ -157,6 +157,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add item usage system
 - Add more cheat codes
 - Enhance unit tests
+- Add screen shake to corruption overlay
 
 ## Unity Editor Tasks (User)
 
