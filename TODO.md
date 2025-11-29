@@ -158,6 +158,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Add more cheat codes
 - Enhance unit tests
 - Add screen shake to corruption overlay
+- Add bloom effect to post-processing
 
 ## Unity Editor Tasks (User)
 

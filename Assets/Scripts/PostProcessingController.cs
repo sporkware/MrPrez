@@ -28,6 +28,13 @@ public class PostProcessingController : MonoBehaviour
             {
                 colorGrading.saturation.value = Mathf.Lerp(0f, -50f, player.corruptionLevel / 100f);
             }
+
+            // Adjust bloom based on approval
+            Bloom bloom;
+            if (volume.profile.TryGetSettings(out bloom))
+            {
+                bloom.intensity.value = Mathf.Lerp(0f, 5f, player.approvalRating / 100f);
+            }
         }
     }
 }
