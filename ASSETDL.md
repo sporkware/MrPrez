@@ -9,6 +9,8 @@ This file contains links to free or low-cost assets for the American President g
 - **US Capitol**: [Capitol Building on CGTrader](https://www.cgtrader.com/free-3d-models/architectural/exterior/us-capitol-building) - Free OBJ.
 - **Vehicles**: [Low Poly Car Pack on Unity Asset Store](https://assetstore.unity.com/packages/3d/vehicles/land/low-poly-car-pack-23341) - Free.
 - **NPCs**: [Cartoon People Pack on Unity Asset Store](https://assetstore.unity.com/packages/3d/characters/cartoon-people-pack-21741) - Free.
+- **Weapons**: [Low Poly Guns on Unity Asset Store](https://assetstore.unity.com/packages/3d/props/guns/low-poly-guns-163051) - Free.
+- **Props**: [Office Furniture on CGTrader](https://www.cgtrader.com/free-3d-models/furniture) - Free models.
 
 ## Textures
 
@@ -21,11 +23,17 @@ This file contains links to free or low-cost assets for the American President g
 - **Music**: [Free Patriotic Music on Freesound](https://freesound.org/search/?q=patriotic) - Search for "anthem" or "march".
 - **SFX**: [Gunshot Sounds on Freesound](https://freesound.org/search/?q=gunshot) - Free WAV files.
 - **Voice Lines**: Record your own or use [ElevenLabs](https://elevenlabs.io/) for AI-generated voices (free tier available).
+- **Ambient Sounds**: [City Ambience on Freesound](https://freesound.org/search/?q=city%20ambience) - Free WAV.
 
 ## Animations
 
 - **Walk/Run Cycles**: [Mixamo Free Animations](https://www.mixamo.com/) - Download FBX for characters.
 - **Idle/Combat**: [Unity Asset Store Free Packs](https://assetstore.unity.com/packages/3d/animations/free-cartoon-animations-pack-225944) - Free.
+
+## UI Elements
+
+- **Icons**: [Free UI Icons on Freepik](https://www.freepik.com/search?query=ui%20icons) - PNG/SVG.
+- **Fonts**: [Google Fonts](https://fonts.google.com/) - Free for UI text.
 
 ## Instructions
 
