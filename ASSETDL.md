@@ -43,6 +43,41 @@ This file contains links to free or low-cost assets for the American President g
 4. For paid assets, check Unity Asset Store for free alternatives.
 5. Ensure licenses allow commercial use if planning release.
 
+## Unity Setup Instructions
+
+1. **Install Unity 6.0 LTS**:
+   - Open Unity Hub.
+   - Go to Installs > Install Editor > Select Unity 6.0.x LTS > Install.
+
+2. **Open Project**:
+   - In Unity Hub, go to Projects > Add > Select the /home/a/mrprez folder.
+   - Open the project.
+
+3. **Install Packages**:
+   - Window > Package Manager > Install: Universal RP, AI Navigation, TextMeshPro.
+   - If needed, install Mirror for multiplayer.
+
+4. **Configure Project**:
+   - Edit > Project Settings > Graphics > Set URP Asset.
+   - Quality Settings: Set to Low for testing.
+
+5. **Set Up Scenes**:
+   - Create MainMenu.unity: Add Canvas, UI elements (title, buttons), assign MenuController script.
+   - Create GameWorld.unity: Add Terrain, Directional Light, Skybox. Place prefabs for White House, Capitol. Add GameManager, WorldGenerator, etc.
+
+6. **Assign Scripts**:
+   - Create empty GameObjects and attach scripts (e.g., GameManager to root).
+   - Assign public fields in inspectors (e.g., PlayerController to player object).
+
+7. **Import Assets**:
+   - Download from links above.
+   - Drag into Assets folder.
+   - Assign to scripts (e.g., AudioManager clips, AssetLoader prefabs).
+
+8. **Test Build**:
+   - File > Build Settings > Add scenes > Build.
+   - Run TestRunner for unit tests.
+
 ## Notes
 
 - Use placeholders (cubes, default materials) for testing.
