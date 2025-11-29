@@ -49,6 +49,10 @@ public class PuzzleSystem : MonoBehaviour
             {
                 player.ModifyApproval(5f);
                 player.ModifyInfluence(2f);
+                if (AchievementManager.Instance != null)
+                {
+                    AchievementManager.Instance.UnlockAchievement("Puzzle Solver");
+                }
             }
         }
         else

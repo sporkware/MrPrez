@@ -48,6 +48,11 @@ public class RomanceManager : MonoBehaviour
         {
             player.ModifyCorruption(10f);
         }
+        // Achievement
+        if (AchievementManager.Instance != null)
+        {
+            AchievementManager.Instance.UnlockAchievement("Secret Affair");
+        }
         // Schedule scandal event
         Invoke("TriggerScandal", Random.Range(60f, 300f)); // 1-5 minutes
     }

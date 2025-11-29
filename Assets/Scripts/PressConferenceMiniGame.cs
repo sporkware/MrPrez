@@ -72,6 +72,10 @@ public class PressConferenceMiniGame : MonoBehaviour
             float score = (float)correctAnswers / currentConference.questions.Length;
             player.ModifyApproval(score * 10f);
             player.ModifyInfluence(score * 5f);
+            if (score >= 1f && AchievementManager.Instance != null)
+            {
+                AchievementManager.Instance.UnlockAchievement("Press Master");
+            }
         }
     }
 }

@@ -66,6 +66,10 @@ public class CardGameMiniGame : MonoBehaviour
             {
                 player.ModifyWealth(500f);
                 player.ModifyInfluence(1f);
+                if (AchievementManager.Instance != null)
+                {
+                    AchievementManager.Instance.UnlockAchievement("Card Shark");
+                }
             }
             else
             {
