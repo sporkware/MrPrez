@@ -1,13 +1,19 @@
-# American President
+# American President - BETA RELEASE
 
 An open-world satirical simulator inspired by Grand Theft Auto, where you play as 'Mr. President' navigating political intrigue, corruption, and power in a fictionalized Washington D.C.
+
+## 🚀 BETA RELEASE STATUS
+**Version**: 0.1.0-BETA  
+**Release Date**: November 28, 2025  
+**Status**: Public BETA - Ready for testing
 
 ## Game Overview
 
 - **Genre**: Open-world action-adventure with RPG elements
-- **Platform**: PC, consoles, mobile
+- **Platform**: PC (Windows/Mac/Linux), consoles, mobile
 - **Engine**: Unity 2022.3 LTS
 - **Target Audience**: Adults 18+ interested in political satire
+- **Content Warning**: Mature themes, political satire, adult content
 
 ## Features
 
@@ -67,13 +73,34 @@ Assets/
 - Use adult content toggle in settings for mature themes
 - Complete quests for progression
 
-## Getting Started (Development)
+## 🎮 Getting Started (Players)
+
+### System Requirements
+- **Minimum**: Intel i5, 8GB RAM, GTX 1050
+- **Recommended**: Intel i7, 16GB RAM, RTX 3060
+- **OS**: Windows 10+, macOS 10.15+, Ubuntu 18.04+
+
+### Installation
+1. Download the BETA build from [Release Page]
+2. Extract ZIP file to desired location
+3. Run `AmericanPresident.exe` (Windows) or `AmericanPresident.app` (Mac)
+4. Configure settings in main menu
+
+### Quick Start Guide
+- **Movement**: WASD keys
+- **Interact**: F key near NPCs/objects  
+- **Drive**: Enter vehicle with F, use WASD to control
+- **Combat**: Left mouse to shoot, right mouse to aim
+- **Mini-Games**: Follow on-screen prompts
+- **Cheats**: C (god mode), M (money), H (health), A (approval), I (influence), R (reset corruption), F (refuel)
+
+## 🛠️ Getting Started (Developers)
 
 1. Open this project in Unity 2022.3 LTS or later
 2. Import required packages (URP, AI Navigation, TextMeshPro, Mirror for multiplayer)
 3. Set up scenes: MainMenu and GameWorld as per AGENTS.md
 4. Assign scripts to GameObjects and configure inspectors
-5. Add assets (models, textures, audio) via Asset Store or free sources
+5. Add assets (models, textures, audio) via Asset Store or free sources (see ASSETDL.md)
 6. Run TestRunner for unit tests, then playtest
 
 ## Build Instructions
@@ -92,6 +119,37 @@ Assets/
 - Add voice acting and sound effects
 - Ensure ethical handling of political satire
 
-## Contributing
+## 🐛 BETA Testing
+
+### How to Report Issues
+- Use GitHub Issues: [Report Bug]
+- Include: System specs, steps to reproduce, expected vs actual behavior
+- For crashes: Include Unity log files
+
+### Known Issues (BETA)
+- Performance drops in crowded areas
+- Occasional audio glitches
+- Save file corruption on rare occasions
+- Multiplayer features are experimental
+
+### Feedback
+- Join our Discord: [Link to Discord]
+- Complete the BETA survey: [Survey Link]
+- Read full BETA release notes: [BETA_RELEASE_NOTES.md](BETA_RELEASE_NOTES.md)
+
+## 🤝 Contributing
 
 This project is set up for autonomous AI development. Follow the Game Design Document (GDD) for feature implementation.
+
+### Development Guidelines
+- See AGENTS.md for coding standards and build instructions
+- Follow Unity best practices for performance
+- Test on target hardware before submitting PRs
+
+## 📄 License
+
+This project is licensed under the MIT License - see LICENSE file for details.
+
+---
+
+**Thank you for testing American President BETA!** 🇺🇸

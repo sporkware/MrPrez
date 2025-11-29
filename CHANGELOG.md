@@ -5,7 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.1.0-BETA] - 2025-11-28
+
+### 🎉 BETA RELEASE
+- Public BETA release with all core features implemented
+- Ready for player testing and feedback
+- Complete documentation and setup guides
 
 ### Added
 - StoryManager for act progression and multiple endings (impeachment, re-election, dictatorship)
@@ -55,5 +60,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - None
 
-## [0.1.0] - 2025-11-28
+## [Unreleased]
+
+### Planned
+- Performance optimizations based on BETA feedback
+- Additional content and side quests
+- Enhanced multiplayer features
+- Bug fixes and stability improvements
+
+## [0.1.0] - 2025-11-28 (Internal Alpha)
 - Initial release with core mechanics, dialogue, quests, world generation, NPC AI, UI, mini-games, audio, visual polish, multiplayer basics, testing, and balancing.

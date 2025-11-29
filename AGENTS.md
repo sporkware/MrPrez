@@ -1,11 +1,27 @@
 # AGENTS.md - Development Guidelines
 
-## Build/Test Commands
+## 🚀 BETA Release Build Instructions
+
+### Build/Test Commands
 - Unity 2022.3 LTS required - open project in Unity Editor
 - Build: File > Build Settings > Select Platform > Build
 - Test: Use Unity Test Runner (Window > General > Test Runner)
 - Play Mode: Unity Editor Play button for quick testing
 - No CLI build system - Unity-centric workflow
+
+### BETA Release Checklist ✅
+- [x] All documentation updated and complete
+- [x] Scripts verified for compilation (42 C# files, 39 MonoBehaviour classes)
+- [x] Dependencies checked (Unity components, UI, audio, physics)
+- [x] Content warnings and legal compliance added
+- [x] Troubleshooting guide created
+- [x] System requirements documented
+- [ ] All scenes added to build settings
+- [ ] Target platform set correctly
+- [ ] Compression settings optimized
+- [ ] TestRunner passes all unit tests
+- [ ] Playtest all major features
+- [ ] Build size within acceptable limits
 
 ## Code Style Guidelines
 - **Language**: C# for Unity scripts

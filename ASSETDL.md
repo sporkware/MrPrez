@@ -1,6 +1,9 @@
-# Asset Download Links
+# Asset Download Links - BETA Release Ready
 
 This file contains links to free or low-cost assets for the American President game. Download and import into Unity's Assets folder.
+
+## 🚀 BETA Release Asset Status
+All required asset categories have placeholder links. For BETA release, use Unity primitives and default materials as placeholders while downloading specific assets.
 
 ## 3D Models
 

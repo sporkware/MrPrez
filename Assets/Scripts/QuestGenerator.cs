@@ -4,7 +4,7 @@ public class QuestGenerator : MonoBehaviour
 {
     public Quest[] questTemplates; // Assign in inspector
 
-    public enum QuestType { Political, Criminal, Social, LeisureSuitLarry, Random }
+    public enum QuestType { Political, Criminal, Social, LeisureSuitLarry, Hidden, Random }
 
     public Quest GenerateQuest(QuestType type)
     {
