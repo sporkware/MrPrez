@@ -105,6 +105,13 @@ This file contains links to free or low-cost assets for the American President g
 
 - **Top Assets For Unity Free**: [GitHub Repo](https://github.com/phancyn/Top-Assets-For-Unity-Free) - Free Unity assets with direct download links in releases.
 
+## Adult Content Assets
+
+- **Voice Lines for Flirtation/Scandals**: [ElevenLabs AI Voices](https://elevenlabs.io/) - Generate custom voice lines for adult-themed dialogues (free tier available).
+- **Sensual Music Tracks**: [Freesound Sensual Audio](https://freesound.org/search/?q=sensual) - Free WAV files for romantic/tense scenes.
+- **Character Outfits (Revealing)**: [Sketchfab Adult Models](https://sketchfab.com/tags/adult) - Free 3D models (ensure compliance with terms).
+- **UI Icons for Romance**: [Freepik Romance Icons](https://www.freepik.com/search?query=romance%20icons) - Free PNG for heart, kiss, etc.
+
 ## Notes
 
 - Use placeholders (cubes, default materials) for testing.
