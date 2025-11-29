@@ -7,6 +7,9 @@ public class MiniMap : MonoBehaviour
     public Transform player;
     public float mapSize = 100f;
     public float updateRate = 0.1f;
+    public float zoomSpeed = 10f;
+    public float minZoom = 50f;
+    public float maxZoom = 200f;
 
     private RenderTexture renderTexture;
     private Camera miniMapCamera;
@@ -27,6 +30,15 @@ public class MiniMap : MonoBehaviour
 
     void Update()
     {
+        // Zoom with mouse wheel
+        float scroll = Input.GetAxis("Mouse ScrollWheel");
+        if (scroll != 0f)
+        {
+            mapSize -= scroll * zoomSpeed;
+            mapSize = Mathf.Clamp(mapSize, minZoom, maxZoom);
+            miniMapCamera.orthographicSize = mapSize / 2f;
+        }
+
         if (Time.time - lastUpdate > updateRate)
         {
             UpdateMiniMap();
