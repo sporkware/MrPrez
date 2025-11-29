@@ -45,7 +45,29 @@ Assets/
 └── Audio/
 ```
 
-## Getting Started
+## Player Guide
+
+### Controls
+- **Movement**: WASD keys
+- **Interact**: F key near NPCs/objects
+- **Drive**: Enter vehicle with F, use WASD to control
+- **Combat**: Left mouse to shoot, right mouse to aim
+- **Mini-Games**: Follow on-screen prompts
+- **Cheats**: C (god mode), M (money), H (health), A (approval), I (influence), R (reset corruption), F (refuel)
+
+### Stats
+- **Approval Rating**: Public opinion, affects NPC behavior
+- **Influence**: Political power, unlocks options
+- **Wealth**: Money for items and bribes
+- **Corruption Level**: Risk of scandals
+
+### Tips
+- Balance your stats to avoid impeachment
+- Explore hidden areas for secrets
+- Use adult content toggle in settings for mature themes
+- Complete quests for progression
+
+## Getting Started (Development)
 
 1. Open this project in Unity 6.0 LTS (recommended) or 2022.3 LTS
 2. Import required packages (URP, AI Navigation, TextMeshPro, Mirror for multiplayer)
