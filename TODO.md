@@ -176,6 +176,7 @@ This document outlines the tasks for an AI coding agent to build out the "Americ
 - Create ASSETDL.md with download links
 - Add detailed Unity setup instructions to ASSETDL.md
 - Add assassination attempts to random events
+- Add cabinet betrayal events
 
 ## Unity Editor Tasks (User)
 

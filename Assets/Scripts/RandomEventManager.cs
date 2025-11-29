@@ -77,6 +77,13 @@ public class RandomEvent
                     player.ModifyInfluence(5f);
                 }
             }
+            else if (eventName.Contains("Cabinet Betrayal"))
+            {
+                // Cabinet member betrays
+                player.ModifyInfluence(-5f);
+                player.ModifyCorruption(2f);
+                Debug.Log("Cabinet betrayal! A minister leaked secrets.");
+            }
             // Add more logic
         }
     }
